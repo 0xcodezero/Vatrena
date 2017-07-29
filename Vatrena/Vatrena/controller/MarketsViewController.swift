@@ -8,17 +8,23 @@
 
 import UIKit
 
-
+protocol CartCheckoutDelegate{
+    func confirmCartCheckout (orderDescription:String, calculatedPricing: Double)
+}
 
 class MarketsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var storesTableView: UITableView!
     let cellReuseIdentifier = "store-cell"
+    let headerHeight = CGFloat(40.0)
+    
+    @IBOutlet weak var storesTableView: UITableView!
+    @IBOutlet weak var segmentContainerView: UIView!
+
+    var cartDelegate : CartCheckoutDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupMarektsSegmentView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +37,35 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     }
     
     
+    //MARK: - Views Customization
+    func setupMarektsSegmentView () {
+        let segment = NLSegmentControl(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
+        segment.segments = VTCartManager.sharedInstance.markets?.map({ return $0.name ?? ""}) ?? []
+        segment.segmentWidthStyle = .dynamic
+        segment.segmentEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        segment.selectionIndicatorHeight = 4.0
+        segment.selectionIndicatorColor = .red
+        segment.selectionIndicatorPosition = .bottom
+        segment.enableVerticalDivider = true
+        segment.verticalDividerWidth = 1
+        segment.verticalDividerInset = 12
+        
+        segment.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.black]
+        segment.selectedTitleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.red]
+        
+        segment.indexChangedHandler = { (index) in
+            self.storesTableView.scrollToRow(at: IndexPath(row: 0, section: index) , at: .top, animated: true)
+        }
+        self.segmentContainerView.addSubview(segment)
+        segment.reloadSegments()
+        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
+//            segment.setSelectedSegmentIndex(5, animated: false)
+//        }
+    }
+    
+    
+    //MARK: - TableView DataSource & Delegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a new cell if needed or reuse an old one
         let cell = storesTableView.dequeueReusableCell(withIdentifier:cellReuseIdentifier ) as! StoreTableViewCell
@@ -56,14 +91,14 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80.0
+        return headerHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: headerHeight))
         view.backgroundColor = UIColor.red
         
-        let headerLable = UILabel(frame: CGRect(x: 10  , y: 10, width: self.view.frame.size.width - 20 , height: 60))
+        let headerLable = UILabel(frame: CGRect(x: 10  , y: 10, width: self.view.frame.size.width - 20 , height: headerHeight - 20))
         headerLable.text = VTCartManager.sharedInstance.markets?[section].name
         headerLable.textAlignment = .right
         headerLable.font = UIFont.systemFont(ofSize: 24)

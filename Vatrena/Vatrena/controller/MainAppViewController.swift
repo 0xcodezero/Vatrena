@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAnalytics
 
-class MainAppViewController: UIViewController {
+class MainAppViewController: UIViewController, CartCheckoutDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +25,6 @@ class MainAppViewController: UIViewController {
     @IBAction func exploreMarketStoresAction(_ sender: UIButton) {
         // Log Opening Market Action
         Analytics.logEvent("ExploreMarketAction", parameters: nil)
-        
-        
         self.performSegue(withIdentifier: "show-markets-segue", sender: nil)
     }
 
@@ -39,6 +37,14 @@ class MainAppViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "show-markets-segue", let marketsViewController = segue.destination as? MarketsViewController
+        {
+            marketsViewController.cartDelegate = self
+        }
     }
 
+    func confirmCartCheckout (orderDescription:String, calculatedPricing: Double){
+        print("Confirmed Order with Details \n \(orderDescription) , \n with Total amout of: \(calculatedPricing)")
+    }
 }
