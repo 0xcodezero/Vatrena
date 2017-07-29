@@ -22,6 +22,7 @@
 		7BE6942F1F2C61250074149B /* MainAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6942E1F2C61250074149B /* MainAppViewController.swift */; };
 		7BE694311F2C61430074149B /* MarketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694301F2C61430074149B /* MarketsViewController.swift */; };
 		7BE694331F2C61530074149B /* CartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694321F2C61530074149B /* CartsViewController.swift */; };
+		7BE694351F2C85E50074149B /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694341F2C85E50074149B /* StoreTableViewCell.swift */; };
 		B28DE927CC307F0475086A27 /* Pods_Vatrena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		7BE6942E1F2C61250074149B /* MainAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAppViewController.swift; sourceTree = "<group>"; };
 		7BE694301F2C61430074149B /* MarketsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketsViewController.swift; sourceTree = "<group>"; };
 		7BE694321F2C61530074149B /* CartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartsViewController.swift; sourceTree = "<group>"; };
+		7BE694341F2C85E50074149B /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		9DC8815CE271604DF8BFACA4 /* Pods-Vatrena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vatrena.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena.release.xcconfig"; sourceTree = "<group>"; };
 		AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vatrena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 		7BE6940F1F2C543B0074149B /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7BE694341F2C85E50074149B /* StoreTableViewCell.swift */,
 				7BE694101F2C543B0074149B /* LaunchScreen.storyboard */,
 				7BE694121F2C543B0074149B /* Main.storyboard */,
 			);
@@ -286,6 +289,7 @@
 				7BE694231F2C5C130074149B /* VTItem.swift in Sources */,
 				7BE6942F1F2C61250074149B /* MainAppViewController.swift in Sources */,
 				7BE694271F2C5DE20074149B /* VTStore.swift in Sources */,
+				7BE694351F2C85E50074149B /* StoreTableViewCell.swift in Sources */,
 				7BE694211F2C5BDC0074149B /* VTOptionGroup.swift in Sources */,
 				7BE6941F1F2C5BC70074149B /* VTOption.swift in Sources */,
 				7BE6942B1F2C5E770074149B /* VTCartManager.swift in Sources */,

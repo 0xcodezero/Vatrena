@@ -18,5 +18,28 @@ final class VTCartManager: NSObject {
     
     private override init() {
         cartItems = []
+        markets = []
+        
+        let mataem = VTMarket(id: 1, name: "مطاعم")
+        
+        let albeek = VTStore(id: 1, name: "البيك")
+        let altazej = VTStore(id: 2, name: "الطازج")
+        
+        mataem.stores?.append(albeek)
+        mataem.stores?.append(altazej)
+        
+        
+        
+        let saydalyat = VTMarket(id: 2, name: "صيدليات")
+        
+        let alnahdi = VTStore(id: 1, name: "النهدي")
+        let aldawaa = VTStore(id: 2, name: "الدواء")
+        
+        saydalyat.stores?.append(alnahdi)
+        saydalyat.stores?.append(aldawaa)
+        
+        markets?.append(mataem)
+        markets?.append(saydalyat)
+        
     }
 }

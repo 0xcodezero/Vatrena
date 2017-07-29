@@ -10,6 +10,9 @@ import UIKit
 
 class VTOptionGroup: NSObject {
     
+    var id : Int!
+    var name : String?
+    
     var options : [VTOption]?
 
 }

@@ -9,5 +9,9 @@
 import UIKit
 
 class VTItemGroup: NSObject {
+    
+    var id : Int!
+    var name : String?
+    
     var items : [VTItem]?
 }

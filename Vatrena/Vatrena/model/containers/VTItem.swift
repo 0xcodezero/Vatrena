@@ -9,5 +9,16 @@
 import UIKit
 
 class VTItem: NSObject {
+    
+    var id : Int!
+    var name : String?
+    var price : Double?
     var optionGroups : [VTOptionGroup]?
+    
+    init(id: Int, name: String?, price: Double?) {
+        self.id = id
+        self.name = name
+        self.price = price ?? 0.0
+        self.optionGroups = []
+    }
 }

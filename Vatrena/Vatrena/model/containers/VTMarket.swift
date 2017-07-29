@@ -9,5 +9,15 @@
 import UIKit
 
 class VTMarket: NSObject {
+    
+    var id : Int!
+    var name : String?
     var stores : [VTStore]?
+    
+    
+    init(id: Int, name: String?) {
+        self.id = id
+        self.name = name
+        stores = []
+    }
 }

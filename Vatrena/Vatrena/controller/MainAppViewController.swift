@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class MainAppViewController: UIViewController {
 
@@ -21,21 +22,17 @@ class MainAppViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func exploreMarketStoresAction(_ sender: UIButton) {
+        // Log Opening Market Action
+        Analytics.logEvent("ExploreMarketAction", parameters: nil)
+        
+        
+        self.performSegue(withIdentifier: "show-markets-segue", sender: nil)
+    }
 
     
     
-    /*
-     
-     FireBase Event Reporting
-     
-     Analytics.logEvent("share_image", parameters: [
-     "name": name as NSObject,
-     "full_text": text as NSObject
-     ])
-     
-     */
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -43,6 +40,5 @@ class MainAppViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }
