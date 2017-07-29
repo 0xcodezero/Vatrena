@@ -7,21 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7BE693E41F2C4AE90074149B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE693E31F2C4AE90074149B /* AppDelegate.swift */; };
-		7BE693E61F2C4AE90074149B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE693E51F2C4AE90074149B /* ViewController.swift */; };
-		7BE693E91F2C4AE90074149B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE693E71F2C4AE90074149B /* Main.storyboard */; };
-		7BE693EB1F2C4AE90074149B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE693EA1F2C4AE90074149B /* Assets.xcassets */; };
-		7BE693EE1F2C4AE90074149B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE693EC1F2C4AE90074149B /* LaunchScreen.storyboard */; };
+		7BE694141F2C543B0074149B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694091F2C543B0074149B /* AppDelegate.swift */; };
+		7BE694151F2C543B0074149B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE6940D1F2C543B0074149B /* Assets.xcassets */; };
+		7BE694171F2C543B0074149B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694101F2C543B0074149B /* LaunchScreen.storyboard */; };
+		7BE694181F2C543B0074149B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694121F2C543B0074149B /* Main.storyboard */; };
+		7BE6941A1F2C54C00074149B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694191F2C54C00074149B /* Info.plist */; };
+		7BE6941C1F2C55020074149B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BE6941B1F2C55020074149B /* GoogleService-Info.plist */; };
+		B28DE927CC307F0475086A27 /* Pods_Vatrena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5CD4874C16E7D550D8EDA7F3 /* Pods-Vatrena.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vatrena.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena.debug.xcconfig"; sourceTree = "<group>"; };
 		7BE693E01F2C4AE90074149B /* Vatrena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vatrena.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BE693E31F2C4AE90074149B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7BE693E51F2C4AE90074149B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7BE693E81F2C4AE90074149B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7BE693EA1F2C4AE90074149B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7BE693ED1F2C4AE90074149B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7BE693EF1F2C4AE90074149B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BE694091F2C543B0074149B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7BE6940D1F2C543B0074149B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7BE694111F2C543B0074149B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7BE694131F2C543B0074149B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7BE694191F2C54C00074149B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Vatrena/Info.plist; sourceTree = SOURCE_ROOT; };
+		7BE6941B1F2C55020074149B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9DC8815CE271604DF8BFACA4 /* Pods-Vatrena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vatrena.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena.release.xcconfig"; sourceTree = "<group>"; };
+		AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vatrena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +34,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B28DE927CC307F0475086A27 /* Pods_Vatrena.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3124D521D743C71BAD7F142D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7BE693D71F2C4AE80074149B = {
 			isa = PBXGroup;
 			children = (
-				7BE693E21F2C4AE90074149B /* Vatrena */,
+				7BE694081F2C543B0074149B /* Vatrena */,
 				7BE693E11F2C4AE90074149B /* Products */,
+				CDE33094E52827836D801B10 /* Pods */,
+				3124D521D743C71BAD7F142D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,17 +67,58 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7BE693E21F2C4AE90074149B /* Vatrena */ = {
+		7BE694081F2C543B0074149B /* Vatrena */ = {
 			isa = PBXGroup;
 			children = (
-				7BE693E31F2C4AE90074149B /* AppDelegate.swift */,
-				7BE693E51F2C4AE90074149B /* ViewController.swift */,
-				7BE693E71F2C4AE90074149B /* Main.storyboard */,
-				7BE693EA1F2C4AE90074149B /* Assets.xcassets */,
-				7BE693EC1F2C4AE90074149B /* LaunchScreen.storyboard */,
-				7BE693EF1F2C4AE90074149B /* Info.plist */,
+				7BE694091F2C543B0074149B /* AppDelegate.swift */,
+				7BE6940A1F2C543B0074149B /* controller */,
+				7BE6940B1F2C543B0074149B /* model */,
+				7BE6940F1F2C543B0074149B /* view */,
+				7BE6940C1F2C543B0074149B /* SupportingFiles */,
 			);
 			path = Vatrena;
+			sourceTree = "<group>";
+		};
+		7BE6940A1F2C543B0074149B /* controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		7BE6940B1F2C543B0074149B /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		7BE6940C1F2C543B0074149B /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				7BE6941B1F2C55020074149B /* GoogleService-Info.plist */,
+				7BE694191F2C54C00074149B /* Info.plist */,
+				7BE6940D1F2C543B0074149B /* Assets.xcassets */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		7BE6940F1F2C543B0074149B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				7BE694101F2C543B0074149B /* LaunchScreen.storyboard */,
+				7BE694121F2C543B0074149B /* Main.storyboard */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		CDE33094E52827836D801B10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CD4874C16E7D550D8EDA7F3 /* Pods-Vatrena.debug.xcconfig */,
+				9DC8815CE271604DF8BFACA4 /* Pods-Vatrena.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +128,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BE693F21F2C4AE90074149B /* Build configuration list for PBXNativeTarget "Vatrena" */;
 			buildPhases = (
+				2C2202B761F85D7D56FA4754 /* [CP] Check Pods Manifest.lock */,
 				7BE693DC1F2C4AE90074149B /* Sources */,
 				7BE693DD1F2C4AE90074149B /* Frameworks */,
 				7BE693DE1F2C4AE90074149B /* Resources */,
+				3F22E803125C0791359FD49B /* [CP] Embed Pods Frameworks */,
+				BDEEEE2F98871AA6DC2D9FA0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,41 +184,90 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BE693EE1F2C4AE90074149B /* LaunchScreen.storyboard in Resources */,
-				7BE693EB1F2C4AE90074149B /* Assets.xcassets in Resources */,
-				7BE693E91F2C4AE90074149B /* Main.storyboard in Resources */,
+				7BE6941A1F2C54C00074149B /* Info.plist in Resources */,
+				7BE694171F2C543B0074149B /* LaunchScreen.storyboard in Resources */,
+				7BE6941C1F2C55020074149B /* GoogleService-Info.plist in Resources */,
+				7BE694151F2C543B0074149B /* Assets.xcassets in Resources */,
+				7BE694181F2C543B0074149B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C2202B761F85D7D56FA4754 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3F22E803125C0791359FD49B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDEEEE2F98871AA6DC2D9FA0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7BE693DC1F2C4AE90074149B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BE693E61F2C4AE90074149B /* ViewController.swift in Sources */,
-				7BE693E41F2C4AE90074149B /* AppDelegate.swift in Sources */,
+				7BE694141F2C543B0074149B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7BE693E71F2C4AE90074149B /* Main.storyboard */ = {
+		7BE694101F2C543B0074149B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7BE693E81F2C4AE90074149B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7BE693EC1F2C4AE90074149B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7BE693ED1F2C4AE90074149B /* Base */,
+				7BE694111F2C543B0074149B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7BE694121F2C543B0074149B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7BE694131F2C543B0074149B /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -259,6 +368,7 @@
 		};
 		7BE693F31F2C4AE90074149B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CD4874C16E7D550D8EDA7F3 /* Pods-Vatrena.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CU86DE5393;
@@ -272,6 +382,7 @@
 		};
 		7BE693F41F2C4AE90074149B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DC8815CE271604DF8BFACA4 /* Pods-Vatrena.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CU86DE5393;
@@ -302,6 +413,7 @@
 				7BE693F41F2C4AE90074149B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
