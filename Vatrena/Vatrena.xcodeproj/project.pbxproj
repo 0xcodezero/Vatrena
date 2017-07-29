@@ -12,6 +12,16 @@
 		7BE694171F2C543B0074149B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694101F2C543B0074149B /* LaunchScreen.storyboard */; };
 		7BE694181F2C543B0074149B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694121F2C543B0074149B /* Main.storyboard */; };
 		7BE6941C1F2C55020074149B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BE6941B1F2C55020074149B /* GoogleService-Info.plist */; };
+		7BE6941F1F2C5BC70074149B /* VTOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6941E1F2C5BC70074149B /* VTOption.swift */; };
+		7BE694211F2C5BDC0074149B /* VTOptionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694201F2C5BDC0074149B /* VTOptionGroup.swift */; };
+		7BE694231F2C5C130074149B /* VTItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694221F2C5C130074149B /* VTItem.swift */; };
+		7BE694251F2C5C300074149B /* VTItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694241F2C5C300074149B /* VTItemGroup.swift */; };
+		7BE694271F2C5DE20074149B /* VTStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694261F2C5DE20074149B /* VTStore.swift */; };
+		7BE6942B1F2C5E770074149B /* VTCartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6942A1F2C5E770074149B /* VTCartManager.swift */; };
+		7BE6942D1F2C5ECB0074149B /* VTMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6942C1F2C5ECB0074149B /* VTMarket.swift */; };
+		7BE6942F1F2C61250074149B /* MainAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6942E1F2C61250074149B /* MainAppViewController.swift */; };
+		7BE694311F2C61430074149B /* MarketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694301F2C61430074149B /* MarketsViewController.swift */; };
+		7BE694331F2C61530074149B /* CartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694321F2C61530074149B /* CartsViewController.swift */; };
 		B28DE927CC307F0475086A27 /* Pods_Vatrena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +34,16 @@
 		7BE694131F2C543B0074149B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7BE694191F2C54C00074149B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Vatrena/Info.plist; sourceTree = SOURCE_ROOT; };
 		7BE6941B1F2C55020074149B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7BE6941E1F2C5BC70074149B /* VTOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTOption.swift; sourceTree = "<group>"; };
+		7BE694201F2C5BDC0074149B /* VTOptionGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTOptionGroup.swift; sourceTree = "<group>"; };
+		7BE694221F2C5C130074149B /* VTItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTItem.swift; sourceTree = "<group>"; };
+		7BE694241F2C5C300074149B /* VTItemGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTItemGroup.swift; sourceTree = "<group>"; };
+		7BE694261F2C5DE20074149B /* VTStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTStore.swift; sourceTree = "<group>"; };
+		7BE6942A1F2C5E770074149B /* VTCartManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTCartManager.swift; sourceTree = "<group>"; };
+		7BE6942C1F2C5ECB0074149B /* VTMarket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTMarket.swift; sourceTree = "<group>"; };
+		7BE6942E1F2C61250074149B /* MainAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAppViewController.swift; sourceTree = "<group>"; };
+		7BE694301F2C61430074149B /* MarketsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketsViewController.swift; sourceTree = "<group>"; };
+		7BE694321F2C61530074149B /* CartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartsViewController.swift; sourceTree = "<group>"; };
 		9DC8815CE271604DF8BFACA4 /* Pods-Vatrena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vatrena.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena.release.xcconfig"; sourceTree = "<group>"; };
 		AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vatrena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,6 +101,9 @@
 		7BE6940A1F2C543B0074149B /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				7BE6942E1F2C61250074149B /* MainAppViewController.swift */,
+				7BE694301F2C61430074149B /* MarketsViewController.swift */,
+				7BE694321F2C61530074149B /* CartsViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -88,6 +111,8 @@
 		7BE6940B1F2C543B0074149B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				7BE6942A1F2C5E770074149B /* VTCartManager.swift */,
+				7BE6941D1F2C5B960074149B /* containers */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -109,6 +134,19 @@
 				7BE694121F2C543B0074149B /* Main.storyboard */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		7BE6941D1F2C5B960074149B /* containers */ = {
+			isa = PBXGroup;
+			children = (
+				7BE6941E1F2C5BC70074149B /* VTOption.swift */,
+				7BE694201F2C5BDC0074149B /* VTOptionGroup.swift */,
+				7BE694221F2C5C130074149B /* VTItem.swift */,
+				7BE694241F2C5C300074149B /* VTItemGroup.swift */,
+				7BE694261F2C5DE20074149B /* VTStore.swift */,
+				7BE6942C1F2C5ECB0074149B /* VTMarket.swift */,
+			);
+			path = containers;
 			sourceTree = "<group>";
 		};
 		CDE33094E52827836D801B10 /* Pods */ = {
@@ -245,7 +283,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BE694231F2C5C130074149B /* VTItem.swift in Sources */,
+				7BE6942F1F2C61250074149B /* MainAppViewController.swift in Sources */,
+				7BE694271F2C5DE20074149B /* VTStore.swift in Sources */,
+				7BE694211F2C5BDC0074149B /* VTOptionGroup.swift in Sources */,
+				7BE6941F1F2C5BC70074149B /* VTOption.swift in Sources */,
+				7BE6942B1F2C5E770074149B /* VTCartManager.swift in Sources */,
+				7BE694311F2C61430074149B /* MarketsViewController.swift in Sources */,
+				7BE694251F2C5C300074149B /* VTItemGroup.swift in Sources */,
+				7BE694331F2C61530074149B /* CartsViewController.swift in Sources */,
 				7BE694141F2C543B0074149B /* AppDelegate.swift in Sources */,
+				7BE6942D1F2C5ECB0074149B /* VTMarket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
