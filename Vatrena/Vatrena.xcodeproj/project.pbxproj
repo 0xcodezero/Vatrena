@@ -11,7 +11,6 @@
 		7BE694151F2C543B0074149B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE6940D1F2C543B0074149B /* Assets.xcassets */; };
 		7BE694171F2C543B0074149B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694101F2C543B0074149B /* LaunchScreen.storyboard */; };
 		7BE694181F2C543B0074149B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694121F2C543B0074149B /* Main.storyboard */; };
-		7BE6941A1F2C54C00074149B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694191F2C54C00074149B /* Info.plist */; };
 		7BE6941C1F2C55020074149B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BE6941B1F2C55020074149B /* GoogleService-Info.plist */; };
 		B28DE927CC307F0475086A27 /* Pods_Vatrena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */; };
 /* End PBXBuildFile section */
@@ -184,7 +183,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BE6941A1F2C54C00074149B /* Info.plist in Resources */,
 				7BE694171F2C543B0074149B /* LaunchScreen.storyboard in Resources */,
 				7BE6941C1F2C55020074149B /* GoogleService-Info.plist in Resources */,
 				7BE694151F2C543B0074149B /* Assets.xcassets in Resources */,
