@@ -12,6 +12,8 @@ class VTItem: NSObject {
     
     var id : Int!
     var name : String?
+    var offering : String?
+    var imageURL : String?
     var price : Double?
     var optionGroups : [VTOptionGroup]?
     
