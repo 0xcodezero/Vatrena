@@ -11,12 +11,14 @@ import UIKit
 class VTStore: NSObject {
     var id : Int!
     var name : String?
+    var offering : String?
     
     var itemGroups : [VTItemGroup]?
     
-    init(id: Int, name: String?) {
+    init(id: Int, name: String?, offering : String? ) {
         self.id = id
         self.name = name
+        self.offering = offering
         self.itemGroups = []
     }
 }

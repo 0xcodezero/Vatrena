@@ -71,7 +71,8 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         let cell = storesTableView.dequeueReusableCell(withIdentifier:cellReuseIdentifier ) as! StoreTableViewCell
         
         // set the text from the data model
-        cell.textLabel?.text = VTCartManager.sharedInstance.markets?[indexPath.section].stores?[indexPath.row].name
+        cell.storeNameLabel.text = VTCartManager.sharedInstance.markets?[indexPath.section].stores?[indexPath.row].name
+        cell.storeDescriptionLabel.text = VTCartManager.sharedInstance.markets?[indexPath.section].stores?[indexPath.row].offering
         
         return cell
     }
@@ -108,6 +109,10 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         return view
     }
     
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
 
     /*
     // MARK: - Navigation

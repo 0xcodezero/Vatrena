@@ -10,6 +10,10 @@ import UIKit
 
 class StoreTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var storeDescriptionLabel: UILabel!
+    @IBOutlet weak var storeImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

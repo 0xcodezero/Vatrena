@@ -22,10 +22,10 @@ final class VTCartManager: NSObject {
         
         let mataem = VTMarket(id: 1, name: "مطاعم")
         
-        let albeek = VTStore(id: 1, name: "البيك")
-        let altazej = VTStore(id: 2, name: "الطازج")
-        let redan = VTStore(id: 1, name: "redan")
-        let bety = VTStore(id: 2, name: "bety")
+        let albeek = VTStore(id: 1, name: "البيك",offering: "أشهي مأكولات البروست والمسحب مع أطعم الساندويتشات")
+        let altazej = VTStore(id: 2, name: "الطازج", offering: "الفروج وما أدراك ما الفروج")
+        let redan = VTStore(id: 1, name: "redan", offering: "")
+        let bety = VTStore(id: 2, name: "bety", offering: "")
         
         
         mataem.stores?.append(albeek)
@@ -36,10 +36,10 @@ final class VTCartManager: NSObject {
         
         let malls = VTMarket(id: 1, name: "Malls")
         
-        let mall1 = VTStore(id: 1, name: "mall1")
-        let mall2 = VTStore(id: 2, name: "mall2")
-        let mall3 = VTStore(id: 1, name: "mall3")
-        let mall4 = VTStore(id: 2, name: "mall4")
+        let mall1 = VTStore(id: 1, name: "mall1", offering: "")
+        let mall2 = VTStore(id: 2, name: "mall2", offering: "")
+        let mall3 = VTStore(id: 1, name: "mall3", offering: "")
+        let mall4 = VTStore(id: 2, name: "mall4", offering: "")
         
         
         malls.stores?.append(mall1)
@@ -50,8 +50,8 @@ final class VTCartManager: NSObject {
         
         let saydalyat = VTMarket(id: 2, name: "صيدليات")
         
-        let alnahdi = VTStore(id: 1, name: "النهدي")
-        let aldawaa = VTStore(id: 2, name: "الدواء")
+        let alnahdi = VTStore(id: 1, name: "النهدي", offering: "")
+        let aldawaa = VTStore(id: 2, name: "الدواء", offering: "")
         
         saydalyat.stores?.append(alnahdi)
         saydalyat.stores?.append(aldawaa)
