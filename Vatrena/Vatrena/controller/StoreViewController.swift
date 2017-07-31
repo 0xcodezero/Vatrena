@@ -45,14 +45,14 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         segment.segmentWidthStyle = .dynamic
         segment.segmentEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         segment.selectionIndicatorHeight = 4.0
-        segment.selectionIndicatorColor = .red
+        segment.selectionIndicatorColor = .white
         segment.selectionIndicatorPosition = .bottom
         segment.enableVerticalDivider = true
         segment.verticalDividerWidth = 1
         segment.verticalDividerInset = 12
         
-        segment.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.black]
-        segment.selectedTitleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.red]
+        segment.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.white]
+        segment.selectedTitleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.white]
         
         segment.indexChangedHandler = { (index) in
             if((self.store.itemGroups?[index].items?.count ?? 0) > 0){
@@ -61,29 +61,10 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         }
         self.segmentContainerView.addSubview(segment)
         segment.reloadSegments()
-        
-        //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
-        //            segment.setSelectedSegmentIndex(5, animated: false)
-        //        }
     }
     
     
     //MARK: - TableView DataSource & Delegate
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // create a new cell if needed or reuse an old one
-        let cell = productsTableView.dequeueReusableCell(withIdentifier:cellReuseIdentifier ) as! ProductTableViewCell
-        
-        // set the text from the data model
-//        cell.storeNameLabel.text = VTCartManager.sharedInstance.markets?[indexPath.section].stores?[indexPath.row].name
-//        cell.storeDescriptionLabel.text = VTCartManager.sharedInstance.markets?[indexPath.section].stores?[indexPath.row].offering
-        
-        cell.textLabel?.text = store.itemGroups?[indexPath.section].items?[indexPath.row].name
-
-        
-        return cell
-    }
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return store.itemGroups?.count ?? 0
     }
@@ -96,6 +77,22 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         print("Select a Product")
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // create a new cell if needed or reuse an old one
+        let cell = productsTableView.dequeueReusableCell(withIdentifier:cellReuseIdentifier ) as! ProductTableViewCell
+        let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
+        // set the text from the data model
+        cell.productNameLabel.text = productItem?.name
+        cell.defaultpriceLabel.text = "\(productItem?.price ?? 0.0) SAR"
+        cell.descriptionLabel.text = productItem?.offering
+        cell.productImageView.image = UIImage(named: productItem?.imageURL ?? "product-placeholder")
+        
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerHeight
@@ -103,7 +100,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: headerHeight))
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor.clear
         
         let headerLable = UILabel(frame: CGRect(x: 10  , y: 10, width: self.view.frame.size.width - 20 , height: headerHeight - 20))
         headerLable.text = store.itemGroups?[section].name

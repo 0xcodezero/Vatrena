@@ -48,14 +48,14 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         segment.segmentWidthStyle = .dynamic
         segment.segmentEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         segment.selectionIndicatorHeight = 4.0
-        segment.selectionIndicatorColor = .red
+        segment.selectionIndicatorColor = .white
         segment.selectionIndicatorPosition = .bottom
         segment.enableVerticalDivider = true
         segment.verticalDividerWidth = 1
         segment.verticalDividerInset = 12
         
-        segment.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.black]
-        segment.selectedTitleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.red]
+        segment.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.white]
+        segment.selectedTitleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.white]
         
         segment.indexChangedHandler = { (index) in
             if ((VTCartManager.sharedInstance.markets?[index].stores?.count) ?? 0 > 0 ){
@@ -103,7 +103,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: headerHeight))
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor.clear
         
         let headerLable = UILabel(frame: CGRect(x: 10  , y: 10, width: self.view.frame.size.width - 20 , height: headerHeight - 20))
         headerLable.text = VTCartManager.sharedInstance.markets?[section].name

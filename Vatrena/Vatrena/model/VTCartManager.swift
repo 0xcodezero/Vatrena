@@ -34,24 +34,24 @@ final class VTCartManager: NSObject {
         let mashroubat = VTItemGroup(id: 3, name: "مشروبات")
         let salatat = VTItemGroup(id: 4, name: "سلطات")
         
-        albeek.itemGroups?.append(sandwatshat)
         albeek.itemGroups?.append(wagabat)
+        albeek.itemGroups?.append(sandwatshat)
         albeek.itemGroups?.append(mashroubat)
         albeek.itemGroups?.append(salatat)
         
-        let alBig = VTItem(id: 1, name: "البيج", price: 10.0)
-        let felehDagag = VTItem(id: 2, name: "فيليه دجاج", price: 4.0)
-        let gambary = VTItem(id: 3, name: "جمبري", price: 8.0)
+        let alBig = VTItem(id: 1, name: "البيج",imageURL: "big-beek", offering: "", price: 10.0)
+        let felehDagag = VTItem(id: 2, name: "برجر فيليه دجاج",imageURL: "burger-feleh", offering: "", price: 3.0)
+        let gambary = VTItem(id: 3, name: "جمبري",imageURL: "sandwitch-gambary", offering: "جمبري جامبو مقرمش مع صلصة الكوكتيل", price: 8.0)
         
         sandwatshat.items?.append(alBig)
         sandwatshat.items?.append(felehDagag)
         sandwatshat.items?.append(gambary)
         
         
-        let borst = VTItem(id: 1, name: "بروست", price: 10.0)
-        let mesa7ab = VTItem(id: 1, name: "مسحب دجاج", price: 4.0)
-        let mesa7abSamak = VTItem(id: 1, name: "مسحب سمك", price: 4.0)
-        let gambaryJamboo = VTItem(id: 1, name: " جامبو جمبري", price: 8.0)
+        let borst = VTItem(id: 1, name: "بروست",imageURL: "broast", offering: "4 قطع دجاج مقدمة مع البطاطا", price: 10.0)
+        let mesa7ab = VTItem(id: 1, name: "مسحب دجاج",imageURL: "mesa7ab", offering: "7 قطع دجاج مسحب مقدم مع بطاطا", price: 4.0)
+        let mesa7abSamak = VTItem(id: 1, name: "مسحب سمك",imageURL: "samak-mesa7ab", offering: "6 قطع من فيليه السمك تقدم مع البطاطا", price: 4.0)
+        let gambaryJamboo = VTItem(id: 1, name: "جامبو جمبري",imageURL: "jambo-gambary", offering: "8 قطع جمبري جامبو تقدم مع البطاطا", price: 8.0)
         
         wagabat.items?.append(borst)
         wagabat.items?.append(mesa7ab)
@@ -59,16 +59,16 @@ final class VTCartManager: NSObject {
         wagabat.items?.append(gambaryJamboo)
         
         
-        let drink1 = VTItem(id: 1, name: "مياة", price: 1.0)
-        let drink2 = VTItem(id: 1, name: "عصير", price: 1.0)
-        let drink3 = VTItem(id: 2, name: "بيبسي", price: 2.0)
+        let drink1 = VTItem(id: 1, name: "مياة",imageURL: "albeek", offering: "قطعتان مسحب", price: 1.0)
+        let drink2 = VTItem(id: 1, name: "عصير",imageURL: "albeek", offering: "قطعتان مسحب", price: 1.0)
+        let drink3 = VTItem(id: 2, name: "بيبسي",imageURL: "albeek", offering: "قطعتان مسحب", price: 2.0)
         mashroubat.items?.append(drink1)
         mashroubat.items?.append(drink2)
         mashroubat.items?.append(drink3)
         
         
-        let salad1 = VTItem(id: 1, name: "سلطة خضراء", price: 3.0)
-        let salad2 = VTItem(id: 2, name: "سلطة ملفوف", price: 3.0)
+        let salad1 = VTItem(id: 1, name: "سلطة خضراء",imageURL: "albeek", offering: "قطعتان مسحب", price: 3.0)
+        let salad2 = VTItem(id: 2, name: "سلطة ملفوف",imageURL: "albeek", offering: "قطعتان مسحب", price: 3.0)
         salatat.items?.append(salad1)
         salatat.items?.append(salad2)
         
