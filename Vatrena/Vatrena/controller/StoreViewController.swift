@@ -18,6 +18,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     let cellReuseIdentifier = "product-cell"
     let headerHeight = CGFloat(40.0)
+    let GROUP_OFFSET = 1000
     
     
     override func viewDidLoad() {
@@ -86,10 +87,9 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         let cell = productsTableView.dequeueReusableCell(withIdentifier:cellReuseIdentifier ) as! ProductTableViewCell
         let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
         // set the text from the data model
-        cell.productNameLabel.text = productItem?.name
-        cell.defaultpriceLabel.text = "\(productItem?.price ?? 0.0) SAR"
-        cell.descriptionLabel.text = productItem?.offering
-        cell.productImageView.image = UIImage(named: productItem?.imageURL ?? "product-placeholder")
+        cell.setProductItem(productItem!)
+        cell.addItemButton.tag = (indexPath.section * GROUP_OFFSET) + indexPath.row
+        cell.removeItemButton.tag = (indexPath.section * GROUP_OFFSET) + indexPath.row
         
         return cell
     }
@@ -110,6 +110,30 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         view.addSubview(headerLable)
         
         return view
+    }
+    @IBAction func updateAddingItemToCartAction(_ sender: UIButton) {
+        let section = sender.tag / GROUP_OFFSET
+        let row = sender.tag % GROUP_OFFSET
+        let item = store.itemGroups?[section].items?[row]
+        
+        if !(VTCartManager.sharedInstance.cartItems?.contains(item!) ?? false){
+            VTCartManager.sharedInstance.cartItems?.append(item!)
+        }
+    }
+    
+    
+    
+    
+    @IBAction func updateRemovingItemToCartAction(_ sender: UIButton) {
+        let section = sender.tag / GROUP_OFFSET
+        let row = sender.tag % GROUP_OFFSET
+        let item = store.itemGroups?[section].items?[row]
+        
+        if (item?.count ?? 0) == 0 {
+            if let index = VTCartManager.sharedInstance.cartItems?.index(of: item!) {
+                VTCartManager.sharedInstance.cartItems?.remove(at: index)
+            }
+        }
     }
 
 }

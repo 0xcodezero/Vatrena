@@ -78,7 +78,7 @@ final class VTCartManager: NSObject {
         mataem.stores?.append(bety)
         
         
-        let malls = VTMarket(id: 1, name: "Malls")
+        let malls = VTMarket(id: 1, name: "بقالات")
         
         let mall1 = VTStore(id: 1, name: "mall1", imageURL: "albeek", offering: "")
         let mall2 = VTStore(id: 2, name: "mall2", imageURL: "albeek", offering: "")

@@ -20,6 +20,7 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var removeItemContainerView: UIView!
     
+    var item : VTItem!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,5 +32,32 @@ class ProductTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
+    func setProductItem(_ item: VTItem){
+        self.item = item
+        prepareViews()
+    }
+    
+    @IBAction func addItemToCartAction(_ sender: UIButton) {
+        item.count = (item.count ?? 0 ) + 1
+        prepareViews()
+    }
+    
 
+    @IBAction func removeItemFromCartAction(_ sender: UIButton) {
+        item.count = (item.count ?? 0 ) - 1
+        prepareViews()
+    }
+    
+    func prepareViews(){
+        productNameLabel.text = item.name
+        defaultpriceLabel.text = "\(item.price ?? 0.0) SAR"
+        descriptionLabel.text = item.offering
+        productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")
+        
+        countLabel.text = "x\(item.count ?? 0)"
+        removeItemContainerView.isHidden = (item.count ?? 0 ) == 0
+    }
+    
 }
