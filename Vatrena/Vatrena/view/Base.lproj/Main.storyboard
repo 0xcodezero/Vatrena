@@ -289,7 +289,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="addItemToCartAction:" destination="gHM-Ij-5BY" eventType="touchUpInside" id="m9a-4W-e2b"/>
-                                                                        <action selector="updateAddingItemToCartAction:" destination="uGl-WJ-fFJ" eventType="touchUpInside" id="sIH-NU-J6M"/>
+                                                                        <action selector="updateItemInsideCartAction:" destination="uGl-WJ-fFJ" eventType="touchUpInside" id="LUY-cv-tgF"/>
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="اضف إلي سلة البضائع" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="wiU-pG-Lsi">
@@ -318,7 +318,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <action selector="removeItemFromCartAction:" destination="gHM-Ij-5BY" eventType="touchUpInside" id="NXV-iX-YnD"/>
-                                                                                <action selector="updateRemovingItemToCartAction:" destination="uGl-WJ-fFJ" eventType="touchUpInside" id="Vyz-wi-7wK"/>
+                                                                                <action selector="updateItemInsideCartAction:" destination="uGl-WJ-fFJ" eventType="touchUpInside" id="gTe-ST-qoJ"/>
                                                                             </connections>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="x12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZy-gH-wrh">

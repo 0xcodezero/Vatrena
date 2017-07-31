@@ -105,4 +105,15 @@ final class VTCartManager: NSObject {
         markets?.append(malls)
         
     }
+    
+    func updateItemInsideCart(item: VTItem){
+        
+        if (item.count ?? 0) == 0 {
+            if let index = VTCartManager.sharedInstance.cartItems?.index(of: item) {
+                VTCartManager.sharedInstance.cartItems?.remove(at: index)
+            }
+        }else if !(VTCartManager.sharedInstance.cartItems?.contains(item) ?? false){
+                VTCartManager.sharedInstance.cartItems?.append(item)
+        }
+    }
 }

@@ -111,29 +111,13 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         
         return view
     }
-    @IBAction func updateAddingItemToCartAction(_ sender: UIButton) {
+    
+    @IBAction func updateItemInsideCartAction(_ sender: UIButton) {
         let section = sender.tag / GROUP_OFFSET
         let row = sender.tag % GROUP_OFFSET
         let item = store.itemGroups?[section].items?[row]
         
-        if !(VTCartManager.sharedInstance.cartItems?.contains(item!) ?? false){
-            VTCartManager.sharedInstance.cartItems?.append(item!)
-        }
-    }
-    
-    
-    
-    
-    @IBAction func updateRemovingItemToCartAction(_ sender: UIButton) {
-        let section = sender.tag / GROUP_OFFSET
-        let row = sender.tag % GROUP_OFFSET
-        let item = store.itemGroups?[section].items?[row]
-        
-        if (item?.count ?? 0) == 0 {
-            if let index = VTCartManager.sharedInstance.cartItems?.index(of: item!) {
-                VTCartManager.sharedInstance.cartItems?.remove(at: index)
-            }
-        }
+        VTCartManager.sharedInstance.updateItemInsideCart(item: item!)
     }
 
 }

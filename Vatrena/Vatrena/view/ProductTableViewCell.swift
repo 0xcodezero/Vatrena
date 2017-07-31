@@ -36,27 +36,35 @@ class ProductTableViewCell: UITableViewCell {
     
     func setProductItem(_ item: VTItem){
         self.item = item
-        prepareViews()
+        prepareViews(animated: false)
     }
     
     @IBAction func addItemToCartAction(_ sender: UIButton) {
         item.count = (item.count ?? 0 ) + 1
-        prepareViews()
+        prepareViews(animated: true)
     }
     
 
     @IBAction func removeItemFromCartAction(_ sender: UIButton) {
         item.count = (item.count ?? 0 ) - 1
-        prepareViews()
+        prepareViews(animated: true)
     }
     
-    func prepareViews(){
+    func prepareViews(animated: Bool){
         productNameLabel.text = item.name
         defaultpriceLabel.text = "\(item.price ?? 0.0) SAR"
         descriptionLabel.text = item.offering
         productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")
         
-        countLabel.text = "x\(item.count ?? 0)"
+        
+        UIView.transition(with: countLabel,
+                          duration: animated ? 0.1 : 0.0,
+                          options: .transitionCrossDissolve,
+                          animations: { [weak self] in
+                            self?.countLabel.text = "x\(self?.item.count ?? 0)"
+            }, completion: nil)
+        
+//        countLabel.text =
         removeItemContainerView.isHidden = (item.count ?? 0 ) == 0
     }
     
