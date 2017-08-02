@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CartCheckoutDelegate{
-    func confirmCartCheckout (orderDescription:String, calculatedPricing: Double)
+    func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double)
 }
 
 class MarketsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
@@ -22,6 +22,8 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var storesTableView: UITableView!
     @IBOutlet weak var segmentContainerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var numberOfCartItemsLabel: UILabel!
+    @IBOutlet weak var cartButton: UIButton!
 
     var cartDelegate : CartCheckoutDelegate?
     
@@ -41,6 +43,11 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        prepareCartViews(animated: false)
+    }
     //MARK: - Views Customization
     func setupMarektsSegmentView () {
         let segment = NLSegmentControl(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
@@ -64,6 +71,12 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         }
         self.segmentContainerView.addSubview(segment)
         segment.reloadSegments()
+    }
+    
+    func prepareCartViews(animated: Bool){
+        numberOfCartItemsLabel.isHidden = (VTCartManager.sharedInstance.cartItems?.count ?? 0 ) == 0
+        
+        numberOfCartItemsLabel.text = "\(VTCartManager.sharedInstance.calclateTotalNumberOfCartItems())"
     }
     
     
@@ -129,4 +142,9 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
          }
      }
 
+    @IBAction func showCartViewAction(_ sender: UIButton) {
+        print(VTCartManager.sharedInstance.generateOrderDetails())
+        
+        print("\n\n Total cost = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
+    }
 }

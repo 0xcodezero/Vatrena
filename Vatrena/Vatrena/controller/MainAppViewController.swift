@@ -44,7 +44,7 @@ class MainAppViewController: UIViewController, CartCheckoutDelegate {
         }
     }
 
-    func confirmCartCheckout (orderDescription:String, calculatedPricing: Double){
+    func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double){
         print("Confirmed Order with Details \n \(orderDescription) , \n with Total amout of: \(calculatedPricing)")
     }
 }

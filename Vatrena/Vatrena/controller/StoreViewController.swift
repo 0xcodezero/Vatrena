@@ -117,7 +117,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         let row = sender.tag % GROUP_OFFSET
         let item = store.itemGroups?[section].items?[row]
         
-        VTCartManager.sharedInstance.updateItemInsideCart(item: item!)
+        VTCartManager.sharedInstance.updateItemInsideCart(store: store, item: item!)
     }
 
 }

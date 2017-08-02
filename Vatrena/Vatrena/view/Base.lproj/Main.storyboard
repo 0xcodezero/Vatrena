@@ -181,6 +181,9 @@
                                                 <integer key="value" value="30"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="showCartViewAction:" destination="McZ-3q-P5c" eventType="touchUpInside" id="45R-lD-K5V"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="kL4-LN-mM6">
                                         <rect key="frame" x="45" y="0.0" width="26" height="26"/>
@@ -202,6 +205,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="cartButton" destination="uH3-fz-7EK" id="Xa8-70-nJr"/>
+                        <outlet property="numberOfCartItemsLabel" destination="kL4-LN-mM6" id="Mv4-d9-Dds"/>
                         <outlet property="segmentContainerView" destination="7ae-pw-bCc" id="FHu-aF-AGx"/>
                         <outlet property="storesTableView" destination="yqF-Jb-Ii6" id="2h3-eX-BOV"/>
                         <outlet property="titleLabel" destination="rie-Ao-wsG" id="8bv-Nd-PtO"/>
