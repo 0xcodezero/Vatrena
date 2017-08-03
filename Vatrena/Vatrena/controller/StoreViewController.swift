@@ -13,12 +13,15 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var segmentContainerView: UIView!
     @IBOutlet weak var storeTitleLabel: UILabel!
+    @IBOutlet weak var blockingView: UIView!
     
     var store : VTStore!
     
     let cellReuseIdentifier = "product-cell"
     let headerHeight = CGFloat(40.0)
     let GROUP_OFFSET = 1000
+    
+    var productDetailsViewController : ProductDetailsViewController!
     
     
     override func viewDidLoad() {
@@ -75,7 +78,13 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Select a Product")
+        
+        let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
+        
+        let rectInTableView = tableView.rectForRow(at: indexPath)
+        let rectInSuperView = tableView.convert(rectInTableView, to: tableView.superview)
+        
+        showProductDetailsView(product:productItem!, startingFrame: rectInSuperView)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,11 +96,34 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         let cell = productsTableView.dequeueReusableCell(withIdentifier:cellReuseIdentifier ) as! ProductTableViewCell
         let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
         // set the text from the data model
+        cell.selectionStyle = .none
         cell.setProductItem(productItem!)
         cell.addItemButton.tag = (indexPath.section * GROUP_OFFSET) + indexPath.row
         cell.removeItemButton.tag = (indexPath.section * GROUP_OFFSET) + indexPath.row
         
         return cell
+    }
+    
+    
+    func showProductDetailsView(product:VTItem , startingFrame: CGRect){
+        productDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+        self.addChildViewController(productDetailsViewController)
+        
+        productDetailsViewController.item = product
+        productDetailsViewController.store = self.store
+        
+        
+        productDetailsViewController.view.frame = startingFrame
+        productDetailsViewController.initialFrame = startingFrame
+        self.view.addSubview(productDetailsViewController.view)
+        
+        productDetailsViewController.didMove(toParentViewController: self)
+        
+        UIView.animate(withDuration: 1, animations: { [unowned self] in
+            self.blockingView.alpha = 1.0
+        },completion:nil)
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -111,6 +143,19 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         
         return view
     }
+    
+    @IBAction func tapDoneAction(_ sender: UITapGestureRecognizer) {
+        
+        print("TAB IS DONE REMOVE ME ")
+        
+        self.productsTableView.reloadData()
+        
+        productDetailsViewController.removeFromSuperView(animated : true)
+        UIView.animate(withDuration: 1, animations: { [unowned self] in
+            self.blockingView.alpha = 0.0
+        },completion:nil)
+    }
+    
     
     @IBAction func updateItemInsideCartAction(_ sender: UIButton) {
         let section = sender.tag / GROUP_OFFSET

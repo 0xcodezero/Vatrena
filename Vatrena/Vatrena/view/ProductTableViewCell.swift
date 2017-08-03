@@ -64,7 +64,6 @@ class ProductTableViewCell: UITableViewCell {
                             self?.countLabel.text = "x\(self?.item.count ?? 0)"
             }, completion: nil)
         
-//        countLabel.text =
         removeItemContainerView.isHidden = (item.count ?? 0 ) == 0
     }
     

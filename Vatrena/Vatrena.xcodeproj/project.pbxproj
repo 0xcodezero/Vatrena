@@ -21,13 +21,14 @@
 		7BE6942D1F2C5ECB0074149B /* VTMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6942C1F2C5ECB0074149B /* VTMarket.swift */; };
 		7BE6942F1F2C61250074149B /* MainAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6942E1F2C61250074149B /* MainAppViewController.swift */; };
 		7BE694311F2C61430074149B /* MarketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694301F2C61430074149B /* MarketsViewController.swift */; };
-		7BE694331F2C61530074149B /* CartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694321F2C61530074149B /* CartsViewController.swift */; };
+		7BE694331F2C61530074149B /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694321F2C61530074149B /* CartViewController.swift */; };
 		7BE694351F2C85E50074149B /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694341F2C85E50074149B /* StoreTableViewCell.swift */; };
 		7BE6943D1F2C9E750074149B /* NLSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694391F2C9E750074149B /* NLSegmentControl.swift */; };
 		7BE6943E1F2C9E750074149B /* NLSegmentControlData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6943A1F2C9E750074149B /* NLSegmentControlData.swift */; };
 		7BE6943F1F2C9E750074149B /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE6943B1F2C9E750074149B /* UIView+Layout.swift */; };
 		7BE694411F2D885C0074149B /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694401F2D885C0074149B /* StoreViewController.swift */; };
 		7BE694431F2D8F0C0074149B /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694421F2D8F0C0074149B /* ProductTableViewCell.swift */; };
+		7BE694471F31BE6E0074149B /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694461F31BE6E0074149B /* ProductDetailsViewController.swift */; };
 		B28DE927CC307F0475086A27 /* Pods_Vatrena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +50,7 @@
 		7BE6942C1F2C5ECB0074149B /* VTMarket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTMarket.swift; sourceTree = "<group>"; };
 		7BE6942E1F2C61250074149B /* MainAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAppViewController.swift; sourceTree = "<group>"; };
 		7BE694301F2C61430074149B /* MarketsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketsViewController.swift; sourceTree = "<group>"; };
-		7BE694321F2C61530074149B /* CartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartsViewController.swift; sourceTree = "<group>"; };
+		7BE694321F2C61530074149B /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		7BE694341F2C85E50074149B /* StoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		7BE694381F2C9E750074149B /* NLSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSegmentControl.h; sourceTree = "<group>"; };
 		7BE694391F2C9E750074149B /* NLSegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLSegmentControl.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		7BE6943B1F2C9E750074149B /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		7BE694401F2D885C0074149B /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		7BE694421F2D8F0C0074149B /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		7BE694461F31BE6E0074149B /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		9DC8815CE271604DF8BFACA4 /* Pods-Vatrena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vatrena.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena.release.xcconfig"; sourceTree = "<group>"; };
 		AF9C45E399B4198D1F557544 /* Pods_Vatrena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vatrena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -116,8 +118,9 @@
 			children = (
 				7BE6942E1F2C61250074149B /* MainAppViewController.swift */,
 				7BE694301F2C61430074149B /* MarketsViewController.swift */,
-				7BE694321F2C61530074149B /* CartsViewController.swift */,
+				7BE694321F2C61530074149B /* CartViewController.swift */,
 				7BE694401F2D885C0074149B /* StoreViewController.swift */,
+				7BE694461F31BE6E0074149B /* ProductDetailsViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -323,9 +326,10 @@
 				7BE6942B1F2C5E770074149B /* VTCartManager.swift in Sources */,
 				7BE694311F2C61430074149B /* MarketsViewController.swift in Sources */,
 				7BE694251F2C5C300074149B /* VTItemGroup.swift in Sources */,
-				7BE694331F2C61530074149B /* CartsViewController.swift in Sources */,
+				7BE694331F2C61530074149B /* CartViewController.swift in Sources */,
 				7BE694141F2C543B0074149B /* AppDelegate.swift in Sources */,
 				7BE6943D1F2C9E750074149B /* NLSegmentControl.swift in Sources */,
+				7BE694471F31BE6E0074149B /* ProductDetailsViewController.swift in Sources */,
 				7BE6942D1F2C5ECB0074149B /* VTMarket.swift in Sources */,
 				7BE6943F1F2C9E750074149B /* UIView+Layout.swift in Sources */,
 			);

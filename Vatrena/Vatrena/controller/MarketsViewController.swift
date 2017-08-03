@@ -87,6 +87,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         
         let store = VTCartManager.sharedInstance.markets?[indexPath.section].stores?[indexPath.row]
         // set the text from the data model
+        cell.selectionStyle = .none
         cell.storeNameLabel.text = store?.name
         cell.storeDescriptionLabel.text = store?.offering
         cell.storeImageView.image = UIImage(named: store?.imageURL ?? "store-placeholder")
@@ -145,6 +146,6 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     @IBAction func showCartViewAction(_ sender: UIButton) {
         print(VTCartManager.sharedInstance.generateOrderDetails())
         
-        print("\n\n Total cost = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
+        print("\n\n تكلفة الطلب = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
     }
 }
