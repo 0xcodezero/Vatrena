@@ -12,7 +12,7 @@ protocol CartCheckoutDelegate{
     func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double)
 }
 
-class MarketsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
+class MarketsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, CartActionsDelegate {
 
     let cellReuseIdentifier = "store-cell"
     let marketsViewTitleString = "شٌركاء توصيل"
@@ -25,12 +25,15 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var numberOfCartItemsLabel: UILabel!
     @IBOutlet weak var cartButton: UIButton!
 
-    var cartDelegate : CartCheckoutDelegate?
+    var cartDelegate : CartCheckoutDelegate!
+    
+    var cartDetailsViewController : CartViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMarektsSegmentView()
         titleLabel.text = marketsViewTitleString
+        storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,8 +147,43 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
      }
 
     @IBAction func showCartViewAction(_ sender: UIButton) {
-        print(VTCartManager.sharedInstance.generateOrderDetails())
+        showCartDetailsView()
+    }
+    
+    
+    func showCartDetailsView(){
         
+        cartDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
+        self.addChildViewController(cartDetailsViewController)
+        
+        cartDetailsViewController.cartDelegate = self
+        
+        cartDetailsViewController.view.frame = self.view.bounds
+        cartDetailsViewController.view.alpha = 0.0
+        
+        self.view.addSubview(cartDetailsViewController.view)
+        cartDetailsViewController.didMove(toParentViewController: self)
+        
+        UIView.animate(withDuration: 0.3, animations: { [unowned self] in
+            self.cartDetailsViewController.view.alpha = 1.0
+        },completion:nil)
+    }
+    
+    
+    func confirmRequestedCartItems()
+    {
+        print(VTCartManager.sharedInstance.generateOrderDetails())
         print("\n\n تكلفة الطلب = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
     }
+    
+    func cartItemsUpdated()
+    {
+    
+    }
+    
+    func continueClosingCartViewWithoutDecision()
+    {
+    
+    }
+    
 }

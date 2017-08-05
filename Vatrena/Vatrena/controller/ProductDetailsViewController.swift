@@ -64,8 +64,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
         productNameLabel.text = item.name
         defaultpriceLabel.text = "\(item.price) SAR"
         descriptionLabel.text = item.offering
-        productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")
-        
+        productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")   
     }
     
     

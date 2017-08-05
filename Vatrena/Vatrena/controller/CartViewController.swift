@@ -8,12 +8,25 @@
 
 import UIKit
 
+protocol CartActionsDelegate {
+    func confirmRequestedCartItems()
+    func cartItemsUpdated()
+    func continueClosingCartViewWithoutDecision()
+}
+
 class CartViewController: UIViewController {
 
+    var cartDelegate : CartActionsDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(blurEffectView)
+        
     }
 
     override func didReceiveMemoryWarning() {

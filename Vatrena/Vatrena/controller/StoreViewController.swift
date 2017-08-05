@@ -27,7 +27,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         setupMarektsSegmentView()
         storeTitleLabel.text = store.name
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
