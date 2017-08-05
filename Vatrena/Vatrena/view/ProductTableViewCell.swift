@@ -19,6 +19,7 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var removeItemButton: UIButton!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var removeItemContainerView: UIView!
+    @IBOutlet weak var showDetailsButton: UIButton!
     
     var item : VTItem!
     
@@ -52,7 +53,7 @@ class ProductTableViewCell: UITableViewCell {
     
     func prepareViews(animated: Bool){
         productNameLabel.text = item.name
-        defaultpriceLabel.text = "\(item.price ?? 0.0) SAR"
+        defaultpriceLabel.text = "\(item.price) SAR"
         descriptionLabel.text = item.offering
         productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")
         
@@ -65,6 +66,7 @@ class ProductTableViewCell: UITableViewCell {
             }, completion: nil)
         
         removeItemContainerView.isHidden = (item.count ?? 0 ) == 0
+        showDetailsButton.isHidden = (item.optionGroups?.count ?? 0) == 0
     }
     
 }

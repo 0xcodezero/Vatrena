@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import PKHUD
 
-class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewDataSource {
+class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewDataSource, ProductDetailsDelegate {
 
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var segmentContainerView: UIView!
@@ -25,6 +26,13 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
 
         setupMarektsSegmentView()
         storeTitleLabel.text = store.name
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blockingView.addSubview(blurEffectView)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,13 +82,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
-        
-        let rectInTableView = tableView.rectForRow(at: indexPath)
-        let rectInSuperView = tableView.convert(rectInTableView, to: tableView.superview)
-        
-        showProductDetailsView(product:productItem!, startingFrame: rectInSuperView)
+        showDetailsForProductItem(atIndexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -99,6 +101,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         cell.setProductItem(productItem!)
         cell.addItemButton.tag = (indexPath.section * Constants.GROUP_OFFSET) + indexPath.row
         cell.removeItemButton.tag = (indexPath.section * Constants.GROUP_OFFSET) + indexPath.row
+        cell.showDetailsButton.tag = (indexPath.section * Constants.GROUP_OFFSET) + indexPath.row
         
         return cell
     }
@@ -108,6 +111,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         productDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
         self.addChildViewController(productDetailsViewController)
         
+        productDetailsViewController.delegate = self
         productDetailsViewController.item = product
         productDetailsViewController.store = self.store
         
@@ -118,7 +122,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         
         productDetailsViewController.didMove(toParentViewController: self)
         
-        UIView.animate(withDuration: 1, animations: { [unowned self] in
+        UIView.animate(withDuration: 0.3, animations: { [unowned self] in
             self.blockingView.alpha = 1.0
         },completion:nil)
         
@@ -144,13 +148,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     }
     
     @IBAction func tapDoneAction(_ sender: UITapGestureRecognizer) {
-        
-        self.productsTableView.reloadData()
-        
-        productDetailsViewController.removeFromSuperView(animated : true)
-        UIView.animate(withDuration: 1, animations: { [unowned self] in
-            self.blockingView.alpha = 0.0
-        },completion:nil)
+        hideDetailsViewController()
     }
     
     
@@ -160,6 +158,34 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         let item = store.itemGroups?[section].items?[row]
         
         VTCartManager.sharedInstance.updateItemInsideCart(store: store, item: item!)
+    }
+    
+    @IBAction func showDetailsForProductAction(_ sender: UIButton) {
+        let section = sender.tag / Constants.GROUP_OFFSET
+        let row = sender.tag % Constants.GROUP_OFFSET
+        
+        showDetailsForProductItem(atIndexPath: IndexPath(row: row, section: section))
+    }
+    
+    func showDetailsForProductItem(atIndexPath indexPath: IndexPath){
+        let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
+        
+        if productItem?.optionGroups?.count ?? 0 > 0 {
+            // If the Product has options to list
+            let rectInTableView = productsTableView.rectForRow(at: indexPath)
+            let rectInSuperView = productsTableView.convert(rectInTableView, to: productsTableView.superview)
+            showProductDetailsView(product:productItem!, startingFrame: rectInSuperView)
+        }
+    }
+    
+    func hideDetailsViewController()
+    {
+        self.productsTableView.reloadData()
+        
+        productDetailsViewController.removeFromSuperView(animated : true)
+        UIView.animate(withDuration: 1, animations: { [unowned self] in
+            self.blockingView.alpha = 0.0
+            },completion:nil)
     }
 
 }

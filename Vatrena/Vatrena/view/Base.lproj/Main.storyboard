@@ -340,6 +340,14 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-j4-PrV">
+                                                            <rect key="frame" x="267" y="96" width="80" height="40"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" image="down_arrow"/>
+                                                            <connections>
+                                                                <action selector="showDetailsForProductAction:" destination="uGl-WJ-fFJ" eventType="touchUpInside" id="Lal-Jw-75y"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
@@ -361,6 +369,7 @@
                                             <outlet property="productNameLabel" destination="no1-Da-IQ8" id="DVm-hP-y8j"/>
                                             <outlet property="removeItemButton" destination="7ch-B2-T4M" id="OG3-fd-6h6"/>
                                             <outlet property="removeItemContainerView" destination="Vnc-dK-z4X" id="Vav-4F-lSo"/>
+                                            <outlet property="showDetailsButton" destination="bY5-j4-PrV" id="y1M-WA-wxG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -413,7 +422,7 @@
                             <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OTT-Hn-142">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Efl-Hy-SaR" appends="YES" id="ixq-N0-aQ3"/>
@@ -438,6 +447,24 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2548" y="-298.2008995502249"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XLn-PH-XMO">
+            <objects>
+                <viewController id="gOt-mZ-Isg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pfr-Pc-DxR"/>
+                        <viewControllerLayoutGuide type="bottom" id="jKz-aj-2M3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="206-aA-Ez0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tu0-Xa-9eE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1682" y="408"/>
         </scene>
         <!--Product Details View Controller-->
         <scene sceneID="sKs-I7-dJX">
@@ -552,6 +579,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9h-SS-jPE">
+                                        <rect key="frame" x="267" y="95" width="80" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="up_arrow"/>
+                                        <connections>
+                                            <action selector="hideDetailsAction:" destination="nMa-y4-4tI" eventType="touchUpInside" id="dc5-Ke-6I6"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -608,6 +643,8 @@
         <image name="back" width="40" height="40"/>
         <image name="cart" width="40" height="40"/>
         <image name="close" width="40" height="40"/>
+        <image name="down_arrow" width="20" height="20"/>
         <image name="main-app-bg" width="320" height="552"/>
+        <image name="up_arrow" width="20" height="20"/>
     </resources>
 </document>

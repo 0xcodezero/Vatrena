@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProductDetailsDelegate {
-    
+    func hideDetailsViewController()
 }
 
 
@@ -20,6 +20,8 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var optionsCollectionView: UICollectionView!
+    
+    var delegate : ProductDetailsDelegate?
     
     var item : VTItem!
     var store: VTStore!
@@ -79,6 +81,9 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
 
     }
     
+    @IBAction func hideDetailsAction(_ sender: UIButton) {
+        delegate?.hideDetailsViewController()
+    }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return item.optionGroups?[section].options?.count ?? 0
