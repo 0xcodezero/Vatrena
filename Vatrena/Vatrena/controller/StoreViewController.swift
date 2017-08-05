@@ -17,10 +17,6 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     var store : VTStore!
     
-    let cellReuseIdentifier = "product-cell"
-    let headerHeight = CGFloat(40.0)
-    let GROUP_OFFSET = 1000
-    
     var productDetailsViewController : ProductDetailsViewController!
     
     
@@ -91,15 +87,18 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         return 180
     }
     
+    
+    final let REUSE_IDENTIFIER = "product-cell"
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a new cell if needed or reuse an old one
-        let cell = productsTableView.dequeueReusableCell(withIdentifier:cellReuseIdentifier ) as! ProductTableViewCell
+        let cell = productsTableView.dequeueReusableCell(withIdentifier:REUSE_IDENTIFIER ) as! ProductTableViewCell
         let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
         // set the text from the data model
         cell.selectionStyle = .none
         cell.setProductItem(productItem!)
-        cell.addItemButton.tag = (indexPath.section * GROUP_OFFSET) + indexPath.row
-        cell.removeItemButton.tag = (indexPath.section * GROUP_OFFSET) + indexPath.row
+        cell.addItemButton.tag = (indexPath.section * Constants.GROUP_OFFSET) + indexPath.row
+        cell.removeItemButton.tag = (indexPath.section * Constants.GROUP_OFFSET) + indexPath.row
         
         return cell
     }
@@ -127,14 +126,14 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerHeight
+        return Constants.storeHeaderHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: headerHeight))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: Constants.storeHeaderHeight))
         view.backgroundColor = UIColor.clear
         
-        let headerLable = UILabel(frame: CGRect(x: 10  , y: 10, width: self.view.frame.size.width - 20 , height: headerHeight - 20))
+        let headerLable = UILabel(frame: CGRect(x: 10  , y: 10, width: self.view.frame.size.width - 20 , height: Constants.storeHeaderHeight - 20))
         headerLable.text = store.itemGroups?[section].name
         headerLable.textAlignment = .right
         headerLable.font = UIFont.systemFont(ofSize: 24)
@@ -146,8 +145,6 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     @IBAction func tapDoneAction(_ sender: UITapGestureRecognizer) {
         
-        print("TAB IS DONE REMOVE ME ")
-        
         self.productsTableView.reloadData()
         
         productDetailsViewController.removeFromSuperView(animated : true)
@@ -158,8 +155,8 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     
     @IBAction func updateItemInsideCartAction(_ sender: UIButton) {
-        let section = sender.tag / GROUP_OFFSET
-        let row = sender.tag % GROUP_OFFSET
+        let section = sender.tag / Constants.GROUP_OFFSET
+        let row = sender.tag % Constants.GROUP_OFFSET
         let item = store.itemGroups?[section].items?[row]
         
         VTCartManager.sharedInstance.updateItemInsideCart(store: store, item: item!)

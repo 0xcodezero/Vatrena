@@ -8,5 +8,6 @@ target 'Vatrena' do
   # Pods for Vatrena
 
 pod 'Firebase/Core'
+pod 'PKHUD', '~> 4.0'
 
 end

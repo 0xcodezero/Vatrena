@@ -60,6 +60,45 @@ final class VTCartManager: NSObject {
         wagabat.items?.append(gambaryJamboo)
         
         
+        
+        let broastSizeOptionGroup = VTOptionGroup(id: 1, name: "الحجم", selectionType: .single)
+        let broast4Pieces = VTOption(id: 1, name: "٤ قطع", selected:true, deltaPrice: 0)
+        let broast8Pieces = VTOption(id: 2, name: "٨ قطع", selected:false, deltaPrice: 11.0)
+        broastSizeOptionGroup.options?.append(broast4Pieces)
+        broastSizeOptionGroup.options?.append(broast8Pieces)
+        
+        
+        let broastHotOptionGroup = VTOptionGroup(id: 1, name: "توابل", selectionType: .single)
+        let broastRegular = VTOption(id: 1, name: "عادي", selected:true, deltaPrice: 0)
+        let broastHot = VTOption(id: 2, name:  "حار", selected:false, deltaPrice: 0.0)
+        broastHotOptionGroup.options?.append(broastRegular)
+        broastHotOptionGroup.options?.append(broastHot)
+        
+        
+        let broastExtrasOptionGroup = VTOptionGroup(id: 1, name: "الزيادات", selectionType: .multiple)
+        let broastbread = VTOption(id: 1, name: "خبز", selected:false, deltaPrice: 1)
+        let broastTomayah = VTOption(id: 2, name:  "ثومية", selected:false, deltaPrice: 0.5)
+        let broastKatshab = VTOption(id: 3, name:  "كاتشب", selected:false, deltaPrice: 0.25)
+        broastExtrasOptionGroup.options?.append(broastbread)
+        broastExtrasOptionGroup.options?.append(broastTomayah)
+        broastExtrasOptionGroup.options?.append(broastKatshab)
+        
+        borst.optionGroups?.append(broastSizeOptionGroup)
+        borst.optionGroups?.append(broastHotOptionGroup)
+        borst.optionGroups?.append(broastExtrasOptionGroup)
+        borst.optionGroups?.append(broastSizeOptionGroup)
+        borst.optionGroups?.append(broastHotOptionGroup)
+        borst.optionGroups?.append(broastExtrasOptionGroup)
+        borst.optionGroups?.append(broastSizeOptionGroup)
+        borst.optionGroups?.append(broastHotOptionGroup)
+        borst.optionGroups?.append(broastExtrasOptionGroup)
+        borst.optionGroups?.append(broastSizeOptionGroup)
+        borst.optionGroups?.append(broastHotOptionGroup)
+        borst.optionGroups?.append(broastExtrasOptionGroup)
+        borst.optionGroups?.append(broastSizeOptionGroup)
+        borst.optionGroups?.append(broastHotOptionGroup)
+        borst.optionGroups?.append(broastExtrasOptionGroup)
+        
         let drink1 = VTItem(id: 1, name: "مياة",imageURL: "albeek", offering: "قطعتان مسحب", price: 1.0)
         let drink2 = VTItem(id: 1, name: "عصير",imageURL: "albeek", offering: "قطعتان مسحب", price: 1.0)
         let drink3 = VTItem(id: 2, name: "بيبسي",imageURL: "albeek", offering: "قطعتان مسحب", price: 2.0)

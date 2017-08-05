@@ -13,9 +13,11 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - PKHUD (4.2.3)
 
 DEPENDENCIES:
   - Firebase/Core
+  - PKHUD (~> 4.0)
 
 SPEC CHECKSUMS:
   Firebase: 284eea779b73fdff309791817da7c68bff8dd572
@@ -23,7 +25,8 @@ SPEC CHECKSUMS:
   FirebaseCore: 85ad466044c2f013cdb167f85d426d15b128114a
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
 
-PODFILE CHECKSUM: b1ab01939fef089230e09f815a109c54313ede12
+PODFILE CHECKSUM: 8f8982fad9bbee8b243df12428bd2729e6d46973
 
 COCOAPODS: 1.2.0

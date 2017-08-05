@@ -13,18 +13,13 @@ protocol ProductDetailsDelegate {
 }
 
 
-class ProductDetailsViewController: UIViewController {
+class ProductDetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var defaultpriceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
-    
-    @IBOutlet weak var addItemButton: UIButton!
-    @IBOutlet weak var removeItemButton: UIButton!
-    @IBOutlet weak var countLabel: UILabel!
-    @IBOutlet weak var removeItemContainerView: UIView!
-    @IBOutlet weak var buttonsContainerView: UIView!
+    @IBOutlet weak var optionsCollectionView: UICollectionView!
     
     var item : VTItem!
     var store: VTStore!
@@ -38,7 +33,6 @@ class ProductDetailsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,13 +41,14 @@ class ProductDetailsViewController: UIViewController {
         UIView.animate(withDuration: 1, animations: { [unowned self] in
             self.view.frame = CGRect(x: 0, y: 80, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 160)
             self.productNameLabel.alpha = 1.0
-            self.buttonsContainerView.alpha = 1.0
+            
         }) { [unowned self] _ in
             
             
-            UIView.animate(withDuration: 1, delay: 0.05, options: [], animations: {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: { [unowned self] in
                 self.defaultpriceLabel.alpha = 1.0
                 self.descriptionLabel.alpha = 1.0
+                self.optionsCollectionView.alpha = 1.0
             })
         }
     }
@@ -64,39 +59,63 @@ class ProductDetailsViewController: UIViewController {
         descriptionLabel.text = item.offering
         productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")
         
-        
-        UIView.transition(with: countLabel,
-                          duration: animated ? 0.1 : 0.0,
-                          options: .transitionCrossDissolve,
-                          animations: { [weak self] in
-                            self?.countLabel.text = "x\(self?.item.count ?? 0)"
-            }, completion: nil)
-        
-        removeItemContainerView.isHidden = (item.count ?? 0 ) == 0
     }
     
     
     func removeFromSuperView(animated : Bool){
         
-        
-        
-        self.defaultpriceLabel.alpha = 0.0
-        self.descriptionLabel.alpha = 0.0
-        self.productNameLabel.alpha = 0.0
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: { [unowned self] in
+        UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseOut], animations: { [unowned self] in
             self.view.frame = self.initialFrame
-            self.buttonsContainerView.alpha = 0.0
-            self.view.alpha = 0.0
+            self.optionsCollectionView.alpha = 0.0
         }) { [unowned self] _ in
-            
-            
             self.view.removeFromSuperview()
             self.removeFromParentViewController()
-            
+        }
+
+    }
+    
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return item.optionGroups?[section].options?.count ?? 0
+    }
+    
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"option-cell", for: indexPath) as! OptionCollectionViewCell
+        cell.optionButton.tag = (indexPath.section * Constants.GROUP_OFFSET) + indexPath.row
+        let option = item.optionGroups?[indexPath.section].options?[indexPath.row]
+        cell.setOptionItem(option!)
+        return cell
+    }
+    
+    
+    
+    public func numberOfSections(in collectionView: UICollectionView) -> Int
+    {
+        return item.optionGroups?.count ?? 0
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        var reusableView : OptionGroupCollectionHeaderReusableView!
+        
+        if kind == UICollectionElementKindSectionHeader {
+            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as! OptionGroupCollectionHeaderReusableView
+            reusableView.optionGroupTitleLabel.text = item.optionGroups?[indexPath.section].name
         }
         
+        return reusableView
+    }
+    
+    @objc(collectionView:layout:insetForSectionAtIndex:)  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let numberOfItems = collectionView.numberOfItems(inSection: section)
+        let combinedItemWidth:CGFloat = (CGFloat(numberOfItems) * flowLayout.itemSize.width) + ((CGFloat(numberOfItems) - 1) * flowLayout.minimumInteritemSpacing)
+        let padding = (collectionView.frame.size.width - combinedItemWidth) / 2
+        
+        return UIEdgeInsetsMake(0, padding, 10, padding)
         
     }
 
