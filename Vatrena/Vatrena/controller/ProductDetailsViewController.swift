@@ -60,7 +60,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
     
     func prepareViews(animated: Bool){
         productNameLabel.text = item.name
-        defaultpriceLabel.text = "\(item.price ?? 0.0) SAR"
+        defaultpriceLabel.text = "\(item.price) SAR"
         descriptionLabel.text = item.offering
         productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")
         
@@ -144,6 +144,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
         UIView.setAnimationsEnabled(false)
         optionsCollectionView.reloadData()
         
+        prepareViews(animated:true)
         Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(reEnableAnimationLayer), userInfo: nil, repeats: false)
     }
     
