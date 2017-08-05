@@ -30,6 +30,11 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
         super.viewDidLoad()
         prepareViews(animated: false)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIView.setAnimationsEnabled(true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -118,5 +123,33 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
         return UIEdgeInsetsMake(0, padding, 10, padding)
         
     }
+    
+    
+    @IBAction func selectOptionAction(_ sender: UIButton) {
+        let section = sender.tag / Constants.GROUP_OFFSET
+        let row = sender.tag % Constants.GROUP_OFFSET
+        
+        let optionGroup = item.optionGroups![section]
+        let option = optionGroup.options![row]
+        
+        if optionGroup.selectionType == .single {
+            for optionItem in optionGroup.options! {
+                optionItem.selected = false
+            }
+            option.selected = true
+        }else{
+            option.selected = !option.selected
+        }
+        
+        UIView.setAnimationsEnabled(false)
+        optionsCollectionView.reloadData()
+        
+        Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(reEnableAnimationLayer), userInfo: nil, repeats: false)
+    }
+    
+    func reEnableAnimationLayer() {
+        UIView.setAnimationsEnabled(true)
+    }
+    
 
 }

@@ -17,12 +17,25 @@ class OptionCollectionViewCell: UICollectionViewCell {
         return _option
     }
     
+    override func awakeFromNib() {
+        optionButton.setTitleColor(UIColor.white, for: .selected)
+        optionButton.setTitleColor(Constants.OPTION_HIGHLIGHTED_COLOR, for: .normal)
+        
+        optionButton.layer.borderColor = Constants.OPTION_HIGHLIGHTED_COLOR.cgColor
+    }
+    
     
     func setOptionItem(_ option: VTOption) {
         self._option = option
         optionButton.setTitle(option.name, for: .normal)
         optionButton.setTitle(option.name, for: .selected)
         optionButton.isSelected = option.selected
+        
+        if option.selected {
+            optionButton.backgroundColor = Constants.OPTION_HIGHLIGHTED_COLOR
+        }else{
+            optionButton.backgroundColor = UIColor.white
+        }
     }
     
 }
