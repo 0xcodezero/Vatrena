@@ -109,8 +109,35 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedStore = VTCartManager.sharedInstance.markets?[indexPath.section].stores?[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "show-store-segue", sender: nil)
+        if let cartStore = VTCartManager.sharedInstance.selectedStore , cartStore != selectedStore{
+            
+            
+            let alretView = UIAlertController(title: "تنبيه", message:("لديك طلب مفتوح من \(cartStore.name ?? "")") , preferredStyle: UIAlertControllerStyle.alert)
+            
+            let openCartAction = UIAlertAction(title: "افتح قائمة المشتريات", style:.default) { [unowned self] (_) in
+                self.showCartDetailsView()
+            }
+            
+            let continueAction = UIAlertAction(title: "اكمل طلبك السابق", style:.default) { [unowned self] (_) in
+                self.selectedStore = cartStore
+                self.performSegue(withIdentifier: "show-store-segue", sender: nil)
+            }
+            
+            let discardAction = UIAlertAction(title: "تجاهل الطلب السابق", style:.destructive) { [unowned self](_) in
+                VTCartManager.sharedInstance.resetCartManager()
+                self.performSegue(withIdentifier: "show-store-segue", sender: nil)
+            }
+            
+            alretView.addAction(openCartAction)
+            alretView.addAction(continueAction)
+            alretView.addAction(discardAction)
+            
+            self.present(alretView, animated: true, completion: nil)
+            
+        }else{
+            self.performSegue(withIdentifier: "show-store-segue", sender: nil)
+        }
+        
     }
     
     
