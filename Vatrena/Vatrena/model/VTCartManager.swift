@@ -50,7 +50,7 @@ final class VTCartManager: NSObject {
         
         
         let borst = VTItem(id: 1, name: "بروست دجاج",imageURL: "broast", offering: "4 قطع دجاج مقدمة مع البطاطا المقلية المهلبية  المقرمشة و حبات الخبز", price: 12.0)
-        let mesa7ab = VTItem(id: 1, name: "مسحب دجاج",imageURL: "mesa7ab", offering: "7 قطع دجاج مسحب مقدم مع بطاطا", price: 4.0)
+        let mesa7ab = VTItem(id: 1, name: "مسحب دجاج",imageURL: "mesa7ab", offering: "7 قطع دجاج مسحب مقدم مع بطاطا", price: 12.0)
         let mesa7abSamak = VTItem(id: 1, name: "مسحب سمك",imageURL: "samak-mesa7ab", offering: "6 قطع من فيليه السمك تقدم مع البطاطا", price: 4.0)
         let gambaryJamboo = VTItem(id: 1, name: "جامبو جمبري",imageURL: "jambo-gambary", offering: "8 قطع جمبري جامبو تقدم مع البطاطا", price: 8.0)
         
@@ -159,14 +159,25 @@ final class VTCartManager: NSObject {
     func generateOrderDetails() -> String {
         
         return VTCartManager.sharedInstance.cartItems?.map({ (cartItem) -> String in
-            return "\(cartItem.count ?? 0) من \(cartItem.name ?? "") بمبلغ \(cartItem.price) ريال لكل وحدة"
+            return cartItem.orderDescription
         }).joined(separator: "\n") ?? ""
     }
     
-    func calclateTotalOrderCost() -> String
+    func calclateTotalOrderCost() -> Double
     {
         let cost = cartItems?.reduce(0){ $0 + (Double($1.count!) * $1.price) } ?? 0
-        return "\(cost) ريال"
+        return cost
     }
     
+    func resetCartManager()
+    {
+        if let items = cartItems{
+            for item in items{
+                item.count = 0
+            }
+            
+            cartItems?.removeAll()
+            selectedStore = nil
+        }
+    }
 }

@@ -25,7 +25,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var numberOfCartItemsLabel: UILabel!
     @IBOutlet weak var cartButton: UIButton!
 
-    var cartDelegate : CartCheckoutDelegate!
+    var cartDelegate : CartCheckoutDelegate?
     
     var cartDetailsViewController : CartViewController!
     
@@ -172,9 +172,10 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     func confirmRequestedCartItems()
     {
-        print(VTCartManager.sharedInstance.generateOrderDetails())
-        print("\n\n تكلفة الطلب = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
-        continueClosingCartViewWithoutDecision()
+//        print(VTCartManager.sharedInstance.generateOrderDetails())
+//        print("\n\n تكلفة الطلب = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
+        continueClosingCartViewWithDecision(confirmed:true)
+        // Clear up all old data
     }
     
     func cartItemsUpdated()
@@ -182,7 +183,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         prepareCartViews(animated: true)
     }
     
-    func continueClosingCartViewWithoutDecision()
+    func continueClosingCartViewWithDecision(confirmed: Bool)
     {
         prepareCartViews(animated: false)
         
@@ -191,6 +192,16 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         }) { [unowned self] _ in
             self.cartDetailsViewController.view.removeFromSuperview()
             self.cartDetailsViewController.removeFromParentViewController()
+            
+            if confirmed {
+                
+                self.dismiss(animated: true){ [unowned self] in
+                    let cartManager = VTCartManager.sharedInstance
+                    self.cartDelegate?.cartCheckoutConfirmed(storeName: cartManager.selectedStore?.name ?? "", orderDescription: cartManager.generateOrderDetails(), calculatedPricing: cartManager.calclateTotalOrderCost())
+                    
+                    cartManager.resetCartManager()
+                }
+            }
         }
     }
 

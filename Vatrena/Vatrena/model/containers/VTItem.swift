@@ -24,18 +24,21 @@ class VTItem: NSObject {
         
         if let groups = optionGroups {
             for optionGroup in groups {
-                
                 if let options = optionGroup.options {
                     for option in options {
                         calcuatedPrice += (option.selected == true) ? (option.deltaPrice) : 0.0
                     }
                 }
-                
-                
             }
         }
-        
         return calcuatedPrice
+    }
+    
+    var orderDescription : String {
+        let optionsDescription = optionGroups?.map { (optionGroup) -> String in
+            return optionGroup.orderDescription
+        }.joined(separator: "\n")
+        return "\(count ?? 0) من \(name ?? "") بمبلغ \(price) ريال لكل وحدة \n \(optionsDescription ?? "")"
     }
     
     init(id: Int, name: String?,imageURL: String?, offering: String?, price: Double?) {

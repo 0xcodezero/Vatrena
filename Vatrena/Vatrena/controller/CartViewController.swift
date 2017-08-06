@@ -11,7 +11,7 @@ import UIKit
 protocol CartActionsDelegate {
     func confirmRequestedCartItems()
     func cartItemsUpdated()
-    func continueClosingCartViewWithoutDecision()
+    func continueClosingCartViewWithDecision(confirmed: Bool)
 }
 
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -21,6 +21,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var cartItemsTableView: UITableView!
     @IBOutlet weak var blurViewContainer: UIView!
     
+    @IBOutlet weak var storeLabel: UILabel!
+    @IBOutlet weak var totalOrderValueLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.blurViewContainer.addSubview(blurEffectView)
         
-        cartItemsTableView.contentInset = UIEdgeInsetsMake(40, 0, 20, 0);
+        cartItemsTableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
+        
+        adjustViewsValues()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,39 +47,34 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
  
     //MARK: - TableView DataSource & Delegate
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3 // Cart Description, TableView Items, Cart Checkout
+        return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch section {
-        case 1:
-            return VTCartManager.sharedInstance.cartItems?.count ?? 0
-        default:
-            return 0
-        }
+        return VTCartManager.sharedInstance.cartItems?.count ?? 0
     }
     
     
     final let REUSE_IDENTIFIER = "product-cell"
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // create a new cell if needed or reuse an old one
-        let cell = cartItemsTableView.dequeueReusableCell(withIdentifier:REUSE_IDENTIFIER ) as! ProductTableViewCell
-        let productItem = VTCartManager.sharedInstance.cartItems?[indexPath.row]
-        // set the text from the data model
-        cell.selectionStyle = .none
-        cell.setProductItem(productItem!)
-        cell.addItemButton.tag = indexPath.row
-        cell.removeItemButton.tag =  indexPath.row
-        cell.showDetailsButton.tag = indexPath.row
-        
-        return cell
+            let cell = cartItemsTableView.dequeueReusableCell(withIdentifier:REUSE_IDENTIFIER ) as! ProductTableViewCell
+            let productItem = VTCartManager.sharedInstance.cartItems?[indexPath.row]
+            // set the text from the data model
+            cell.selectionStyle = .none
+            cell.setProductItem(productItem!)
+            cell.addItemButton.tag = indexPath.row
+            cell.removeItemButton.tag =  indexPath.row
+            cell.showDetailsButton.tag = indexPath.row
+            
+            return cell
     }
     
     
     @IBAction func closeCartAction(_ sender: UIButton) {
-        cartDelegate?.continueClosingCartViewWithoutDecision()
+        cartDelegate?.continueClosingCartViewWithDecision(confirmed: false)
     }
+    
     @IBAction func updateCartItemsAction(_ sender: UIButton) {
         
         let row = sender.tag
@@ -83,11 +82,26 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         VTCartManager.sharedInstance.updateItemInsideCart(store: VTCartManager.sharedInstance.selectedStore, item: item!)
         
         cartItemsTableView.reloadData()
+        adjustViewsValues()
         
         if (VTCartManager.sharedInstance.cartItems?.count ?? 0) == 0 {
-            cartDelegate?.continueClosingCartViewWithoutDecision()
+            cartDelegate?.continueClosingCartViewWithDecision(confirmed: false)
         }
-        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    
+    func adjustViewsValues(){
+        storeLabel.text = VTCartManager.sharedInstance.selectedStore?.name
+        totalOrderValueLabel.text = "\(VTCartManager.sharedInstance.calclateTotalOrderCost()) ريال"
+    }
+    
+    @IBAction func confirmStartingOrderAction(_ sender: UIButton) {
+        cartDelegate?.confirmRequestedCartItems()
     }
 
 }

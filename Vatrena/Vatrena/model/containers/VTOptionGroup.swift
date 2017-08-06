@@ -21,6 +21,16 @@ class VTOptionGroup: NSObject {
     
     var options : [VTOption]?
     
+    var orderDescription : String {
+        if let options = options {
+            let selectedOptions = options.filter({$0.selected})
+            if selectedOptions.count > 0 {
+                return "\(name ?? ""):\n \(selectedOptions.map({ return "\($0.name ?? "")"}).joined(separator: ", "))"
+            }
+        }
+        return ""
+    }
+    
     init(id: Int, name: String?, selectionType: SelectionType?){
         self.id = id
         self.name = name
