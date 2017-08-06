@@ -14,9 +14,13 @@ protocol CartActionsDelegate {
     func continueClosingCartViewWithoutDecision()
 }
 
-class CartViewController: UIViewController {
+class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var cartDelegate : CartActionsDelegate?
+    
+    @IBOutlet weak var cartItemsTableView: UITableView!
+    @IBOutlet weak var blurViewContainer: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,9 @@ class CartViewController: UIViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurEffectView)
+        self.blurViewContainer.addSubview(blurEffectView)
         
+        cartItemsTableView.contentInset = UIEdgeInsetsMake(40, 0, 20, 0);
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,14 +40,54 @@ class CartViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+ 
+    //MARK: - TableView DataSource & Delegate
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3 // Cart Description, TableView Items, Cart Checkout
     }
-    */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch section {
+        case 1:
+            return VTCartManager.sharedInstance.cartItems?.count ?? 0
+        default:
+            return 0
+        }
+    }
+    
+    
+    final let REUSE_IDENTIFIER = "product-cell"
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // create a new cell if needed or reuse an old one
+        let cell = cartItemsTableView.dequeueReusableCell(withIdentifier:REUSE_IDENTIFIER ) as! ProductTableViewCell
+        let productItem = VTCartManager.sharedInstance.cartItems?[indexPath.row]
+        // set the text from the data model
+        cell.selectionStyle = .none
+        cell.setProductItem(productItem!)
+        cell.addItemButton.tag = indexPath.row
+        cell.removeItemButton.tag =  indexPath.row
+        cell.showDetailsButton.tag = indexPath.row
+        
+        return cell
+    }
+    
+    
+    @IBAction func closeCartAction(_ sender: UIButton) {
+        cartDelegate?.continueClosingCartViewWithoutDecision()
+    }
+    @IBAction func updateCartItemsAction(_ sender: UIButton) {
+        
+        let row = sender.tag
+        let item = VTCartManager.sharedInstance.cartItems?[row]
+        VTCartManager.sharedInstance.updateItemInsideCart(store: VTCartManager.sharedInstance.selectedStore, item: item!)
+        
+        cartItemsTableView.reloadData()
+        
+        if (VTCartManager.sharedInstance.cartItems?.count ?? 0) == 0 {
+            cartDelegate?.continueClosingCartViewWithoutDecision()
+        }
+        
+    }
 
 }

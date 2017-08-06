@@ -14,7 +14,7 @@ final class VTCartManager: NSObject {
     
     var markets : [VTMarket]?
     var cartItems : [VTItem]?
-
+    var selectedStore : VTStore?
     
     private override init() {
         cartItems = []
@@ -134,13 +134,19 @@ final class VTCartManager: NSObject {
         
     }
     
-    func updateItemInsideCart(store: VTStore, item: VTItem){
+    func updateItemInsideCart(store: VTStore?, item: VTItem){
         if (item.count ?? 0) == 0 {
             if let index = VTCartManager.sharedInstance.cartItems?.index(of: item) {
                 VTCartManager.sharedInstance.cartItems?.remove(at: index)
             }
+            
+            if cartItems?.count ?? 0 == 0 {
+                selectedStore = nil
+            }
+            
         }else if !(VTCartManager.sharedInstance.cartItems?.contains(item) ?? false){
                 VTCartManager.sharedInstance.cartItems?.append(item)
+                selectedStore = store
         }
     }
     

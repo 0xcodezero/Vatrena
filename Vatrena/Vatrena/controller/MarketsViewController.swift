@@ -78,8 +78,8 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     func prepareCartViews(animated: Bool){
         numberOfCartItemsLabel.isHidden = (VTCartManager.sharedInstance.cartItems?.count ?? 0 ) == 0
-        
         numberOfCartItemsLabel.text = "\(VTCartManager.sharedInstance.calclateTotalNumberOfCartItems())"
+        cartButton.isHidden = (VTCartManager.sharedInstance.cartItems?.count ?? 0 ) == 0
     }
     
     
@@ -174,16 +174,25 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     {
         print(VTCartManager.sharedInstance.generateOrderDetails())
         print("\n\n تكلفة الطلب = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
+        continueClosingCartViewWithoutDecision()
     }
     
     func cartItemsUpdated()
     {
-    
+        prepareCartViews(animated: true)
     }
     
     func continueClosingCartViewWithoutDecision()
     {
-    
+        prepareCartViews(animated: false)
+        
+        UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseOut], animations: { [unowned self] in
+            self.cartDetailsViewController.view.alpha = 0.0
+        }) { [unowned self] _ in
+            self.cartDetailsViewController.view.removeFromSuperview()
+            self.cartDetailsViewController.removeFromParentViewController()
+        }
     }
+
     
 }
