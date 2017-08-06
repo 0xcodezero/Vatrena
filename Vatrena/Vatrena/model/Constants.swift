@@ -15,6 +15,7 @@ struct Constants {
     
     //MARK: - STORE ViewController Constants
     static let storeHeaderHeight = CGFloat(40.0)
+    static let STORES_VIEW_TITLE = "شٌركاء توصيل"
     
     //MARK: - Product Details Constants
     static let OPTION_HIGHLIGHTED_COLOR = UIColor(red: 0.0, green: 122.0 / 255, blue: 1.0, alpha: 1.0)

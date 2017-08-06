@@ -24,7 +24,7 @@ class MainAppViewController: UIViewController, CartCheckoutDelegate {
     
     @IBAction func exploreMarketStoresAction(_ sender: UIButton) {
         // Log Opening Market Action
-        Analytics.logEvent("ExploreMarketAction", parameters: nil)
+        Analytics.logEvent("ExploreMarket", parameters: nil)
         self.performSegue(withIdentifier: "show-markets-segue", sender: nil)
     }
 
@@ -45,6 +45,7 @@ class MainAppViewController: UIViewController, CartCheckoutDelegate {
     }
 
     func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double){
+        Analytics.logEvent("ConfirmedMarketOrder", parameters: nil)
         print("\n\n Confirmed Order from \(storeName) \n Details: \n \(orderDescription) \n with Items cost of: \(calculatedPricing) SAR")
     }
 }

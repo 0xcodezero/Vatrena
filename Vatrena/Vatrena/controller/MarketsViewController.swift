@@ -15,7 +15,6 @@ protocol CartCheckoutDelegate{
 class MarketsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, CartActionsDelegate {
 
     let cellReuseIdentifier = "store-cell"
-    let marketsViewTitleString = "شٌركاء توصيل"
     let headerHeight = CGFloat(40.0)
     var selectedStore : VTStore?
     
@@ -32,7 +31,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMarektsSegmentView()
-        titleLabel.text = marketsViewTitleString
+        titleLabel.text = Constants.STORES_VIEW_TITLE
         storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
     }
 
@@ -199,10 +198,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     func confirmRequestedCartItems()
     {
-//        print(VTCartManager.sharedInstance.generateOrderDetails())
-//        print("\n\n تكلفة الطلب = \(VTCartManager.sharedInstance.calclateTotalOrderCost()) \n")
         continueClosingCartViewWithDecision(confirmed:true)
-        // Clear up all old data
     }
     
     func cartItemsUpdated()
