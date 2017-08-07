@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 protocol CartCheckoutDelegate{
     func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double)
@@ -33,10 +34,15 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         
         titleLabel.text = Constants.STORES_VIEW_TITLE
         storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
+        self.segmentContainerView.alpha = 0.0
+        
+        HUD.show(.labeledProgress(title: nil, subtitle:"جاري تحميل البيانات.." ))
+        
         
         VTCartManager.sharedInstance.startLoadingVatrenaData {[unowned self] (markets) in
             self.setupMarektsSegmentView()
             self.storesTableView.reloadData()
+            PKHUD.sharedHUD.hide(afterDelay: 0.3)
         }
     }
 
@@ -76,6 +82,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
                 self.storesTableView.scrollToRow(at: IndexPath(row: 0, section: index) , at: .top, animated: true)
             }
         }
+        self.segmentContainerView.alpha = 1.0
         self.segmentContainerView.addSubview(segment)
         segment.reloadSegments()
     }
