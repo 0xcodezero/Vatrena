@@ -20,4 +20,23 @@ class VTMarket: NSObject {
         self.name = name
         stores = []
     }
+    
+    
+    static func parseNode(_ dictionary: [String: Any]) -> VTMarket{
+        let id = (dictionary["id"] as? Int) ?? 0
+        let name = dictionary["name"] as? String
+        
+        let market = VTMarket(id: id, name: name)
+        
+        if let storesDicList = dictionary["stores"] as? [[String: Any]]{
+            let stores = storesDicList.map({ (storeDic) -> VTStore in
+                return VTStore.parseNode(storeDic)
+            })
+            
+            market.stores = stores
+        }
+        
+        
+        return market
+    }
 }

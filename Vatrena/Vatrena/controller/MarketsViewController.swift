@@ -30,9 +30,14 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMarektsSegmentView()
+        
         titleLabel.text = Constants.STORES_VIEW_TITLE
         storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
+        
+        VTCartManager.sharedInstance.startLoadingVatrenaData {[unowned self] (markets) in
+            self.setupMarektsSegmentView()
+            self.storesTableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,7 +97,9 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         cell.selectionStyle = .none
         cell.storeNameLabel.text = store?.name
         cell.storeDescriptionLabel.text = store?.offering
-        cell.storeImageView.image = UIImage(named: store?.imageURL ?? "store-placeholder")
+        cell.storeImageView.image = UIImage(named: "store-placeholder")
+        
+        cell.storeImageView.loadingImageUsingCache(withURLString: store?.imageURL ?? "")
         
         return cell
     }
