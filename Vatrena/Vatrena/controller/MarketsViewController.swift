@@ -33,7 +33,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         titleLabel.text = Constants.STORES_VIEW_TITLE
-        storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
+        storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0)
         self.segmentContainerView.alpha = 0.0
         
         HUD.show(.labeledProgress(title: nil, subtitle:"جاري تحميل البيانات.." ))
@@ -63,6 +63,12 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     }
     //MARK: - Views Customization
     func setupMarektsSegmentView () {
+        
+        if ((VTCartManager.sharedInstance.markets?.count) ?? 0 < Constants.MINIMUM_NUNMBER_OF_SECTIONS_TO_SHOW_SEGMENT ) { // Two Items are sufficient for showing the segment view
+            storesTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            return
+        }
+        
         let segment = NLSegmentControl(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         segment.segments = VTCartManager.sharedInstance.markets?.map({ return $0.name ?? ""}) ?? []
         segment.segmentWidthStyle = .dynamic

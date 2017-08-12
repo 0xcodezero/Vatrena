@@ -17,9 +17,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     @IBOutlet weak var blockingView: UIView!
     
     var store : VTStore!
-    
     var productDetailsViewController : ProductDetailsViewController!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +38,16 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func discardStoreDetailViewAction(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     
     //MARK: - Views Customization
     func setupMarektsSegmentView () {
+        
+        if ((store.itemGroups?.count) ?? 0 < Constants.MINIMUM_NUNMBER_OF_SECTIONS_TO_SHOW_SEGMENT ) { // Two sections are sufficient for showing the segment view
+            self.segmentContainerView.alpha = 0.0
+            productsTableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0)
+            return
+        }
+        
         let segment = NLSegmentControl(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         segment.segments = store.itemGroups?.map({ return $0.name ?? ""}) ?? []
         segment.segmentWidthStyle = .dynamic
@@ -67,12 +67,15 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
                 self.productsTableView.scrollToRow(at: IndexPath(row: 0, section: index) , at: .top, animated: true)
             }
         }
+        self.segmentContainerView.alpha = 1.0
         self.segmentContainerView.addSubview(segment)
         segment.reloadSegments()
     }
     
     
     //MARK: - TableView DataSource & Delegate
+    final let REUSE_IDENTIFIER = "product-cell"
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return store.itemGroups?.count ?? 0
     }
@@ -89,9 +92,6 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         return 180
     }
     
-    
-    final let REUSE_IDENTIFIER = "product-cell"
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a new cell if needed or reuse an old one
         let cell = productsTableView.dequeueReusableCell(withIdentifier:REUSE_IDENTIFIER ) as! ProductTableViewCell
@@ -104,29 +104,6 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         cell.showDetailsButton.tag = (indexPath.section * Constants.GROUP_OFFSET) + indexPath.row
         
         return cell
-    }
-    
-    
-    func showProductDetailsView(product:VTItem , startingFrame: CGRect){
-        productDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
-        self.addChildViewController(productDetailsViewController)
-        
-        productDetailsViewController.delegate = self
-        productDetailsViewController.item = product
-        productDetailsViewController.store = self.store
-        
-        
-        productDetailsViewController.view.frame = startingFrame
-        productDetailsViewController.initialFrame = startingFrame
-        self.view.addSubview(productDetailsViewController.view)
-        
-        productDetailsViewController.didMove(toParentViewController: self)
-        
-        UIView.animate(withDuration: 0.3, animations: { [unowned self] in
-            self.blockingView.alpha = 1.0
-        },completion:nil)
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -146,6 +123,8 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         
         return view
     }
+    
+    //MARK: - IBAction Handlers
     
     @IBAction func tapDoneAction(_ sender: UITapGestureRecognizer) {
         hideDetailsViewController()
@@ -167,6 +146,12 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         showDetailsForProductItem(atIndexPath: IndexPath(row: row, section: section))
     }
     
+    @IBAction func discardStoreDetailViewAction(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Product Details view Navigation
+    
     func showDetailsForProductItem(atIndexPath indexPath: IndexPath){
         let productItem = store.itemGroups?[indexPath.section].items?[indexPath.row]
         
@@ -178,6 +163,28 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         }
     }
     
+    func showProductDetailsView(product:VTItem , startingFrame: CGRect){
+        productDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "ProductDetailsViewController") as! ProductDetailsViewController
+        self.addChildViewController(productDetailsViewController)
+        
+        productDetailsViewController.delegate = self
+        productDetailsViewController.item = product
+        productDetailsViewController.store = self.store
+        
+        
+        productDetailsViewController.view.frame = startingFrame
+        productDetailsViewController.initialFrame = startingFrame
+        self.view.addSubview(productDetailsViewController.view)
+        
+        productDetailsViewController.didMove(toParentViewController: self)
+        
+        UIView.animate(withDuration: 0.3, animations: { [unowned self] in
+            self.blockingView.alpha = 1.0
+            },completion:nil)
+        
+        
+    }
+    
     func hideDetailsViewController()
     {
         self.productsTableView.reloadData()
@@ -187,5 +194,4 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
             self.blockingView.alpha = 0.0
             },completion:nil)
     }
-
 }
