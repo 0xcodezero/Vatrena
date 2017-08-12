@@ -9,15 +9,26 @@
 import UIKit
 import PKHUD
 
-class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewDataSource, ProductDetailsDelegate {
+
+protocol StoreDelegate {
+    func confirmOrderFromStore()
+}
+
+class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewDataSource, ProductDetailsDelegate, CartActionsDelegate {
 
     @IBOutlet weak var productsTableView: UITableView!
     @IBOutlet weak var segmentContainerView: UIView!
     @IBOutlet weak var storeTitleLabel: UILabel!
     @IBOutlet weak var blockingView: UIView!
+    @IBOutlet weak var cartButton: UIButton!
+    @IBOutlet weak var numberOfCartItemsLabel: UILabel!
+    @IBOutlet weak var deliverButton: UIButton!
     
     var store : VTStore!
+    
+    var storeDelegate : StoreDelegate?
     var productDetailsViewController : ProductDetailsViewController!
+    var cartDetailsViewController : CartViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +36,18 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         setupMarektsSegmentView()
         storeTitleLabel.text = store.name
         
+        productsTableView.contentInset = ((store.itemGroups?.count) ?? 0 < Constants.MINIMUM_NUNMBER_OF_SECTIONS_TO_SHOW_SEGMENT ) ?  UIEdgeInsetsMake(0, 0, 40, 0) : UIEdgeInsetsMake(40, 0, 40, 0)
+        
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blockingView.addSubview(blurEffectView)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        prepareCartView(animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +61,6 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         
         if ((store.itemGroups?.count) ?? 0 < Constants.MINIMUM_NUNMBER_OF_SECTIONS_TO_SHOW_SEGMENT ) { // Two sections are sufficient for showing the segment view
             self.segmentContainerView.alpha = 0.0
-            productsTableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0)
             return
         }
         
@@ -70,6 +86,34 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         self.segmentContainerView.alpha = 1.0
         self.segmentContainerView.addSubview(segment)
         segment.reloadSegments()
+    }
+    
+    func prepareCartView(animated: Bool){
+        
+        UIView.transition(with: numberOfCartItemsLabel,
+                          duration: animated ? 0.2 : 0.0,
+                          options: .transitionCrossDissolve,
+                          animations: { [weak self] in
+                            self?.numberOfCartItemsLabel.text = "\(VTCartManager.sharedInstance.calclateTotalNumberOfCartItems())"
+            }, completion: nil)
+        
+        
+        UIView.animate(withDuration: 0.4, animations: { [unowned self] in
+            self.deliverButton.frame.origin.x = ((VTCartManager.sharedInstance.cartItems?.count ?? 0 ) == 0) ? self.cartButton.frame.origin.x : self.cartButton.frame.origin.x - 70
+            
+            if (VTCartManager.sharedInstance.cartItems?.count ?? 0 ) == 0 {
+                self.numberOfCartItemsLabel.alpha = 0.0
+                self.cartButton.alpha = 0.0
+                self.deliverButton.alpha = 0.0
+            }else{
+                self.numberOfCartItemsLabel.alpha = 1.0
+                self.cartButton.alpha = 1.0
+                self.deliverButton.alpha = 1.0
+            }
+        })
+        
+        
+        
     }
     
     
@@ -137,6 +181,8 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
         let item = store.itemGroups?[section].items?[row]
         
         VTCartManager.sharedInstance.updateItemInsideCart(store: store, item: item!)
+        
+        self.prepareCartView(animated: true)
     }
     
     @IBAction func showDetailsForProductAction(_ sender: UIButton) {
@@ -148,6 +194,11 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     @IBAction func discardStoreDetailViewAction(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func deliveryStartingAction(_ sender: UIButton) {
+        continueClosingCartViewWithDecision(confirmed: true)
     }
     
     // MARK: - Product Details view Navigation
@@ -194,4 +245,62 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
             self.blockingView.alpha = 0.0
             },completion:nil)
     }
+    
+    //MARK: - CartView Navigation
+    @IBAction func showCartViewAction(_ sender: UIButton) {
+        showCartDetailsView()
+    }
+    
+    
+    func showCartDetailsView(){
+        
+        cartDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController
+        self.addChildViewController(cartDetailsViewController!)
+        
+        cartDetailsViewController?.cartDelegate = self
+        
+        cartDetailsViewController?.view.frame = self.view.bounds
+        cartDetailsViewController?.view.alpha = 0.0
+        
+        if let childView = cartDetailsViewController?.view{
+            self.view.addSubview(childView)
+        }
+        cartDetailsViewController?.didMove(toParentViewController: self)
+        
+        UIView.animate(withDuration: 0.3, animations: { [unowned self] in
+            self.cartDetailsViewController?.view.alpha = 1.0
+            },completion:nil)
+    }
+    
+    
+    func confirmRequestedCartItems()
+    {
+        continueClosingCartViewWithDecision(confirmed:true)
+    }
+    
+    func cartItemsUpdated()
+    {
+        prepareCartView(animated: true)
+    }
+    
+    func continueClosingCartViewWithDecision(confirmed: Bool)
+    {
+        prepareCartView(animated: false)
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: { [unowned self] in
+            self.cartDetailsViewController?.view.alpha = 0.0
+        }) { [unowned self] _ in
+            self.cartDetailsViewController?.view.removeFromSuperview()
+            self.cartDetailsViewController?.removeFromParentViewController()
+            
+            if confirmed {
+                
+                self.dismiss(animated: true){ [unowned self] in
+                    self.storeDelegate?.confirmOrderFromStore()
+                }
+            }
+        }
+    }
+    
+    
 }

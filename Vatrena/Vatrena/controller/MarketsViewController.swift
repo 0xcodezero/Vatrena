@@ -13,7 +13,7 @@ protocol CartCheckoutDelegate{
     func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double)
 }
 
-class MarketsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, CartActionsDelegate {
+class MarketsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, CartActionsDelegate, StoreDelegate {
 
     let cellReuseIdentifier = "store-cell"
     let headerHeight = CGFloat(40.0)
@@ -59,7 +59,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        prepareCartViews(animated: false)
+        prepareCartView(animated: false)
     }
     //MARK: - Views Customization
     func setupMarektsSegmentView () {
@@ -93,7 +93,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         segment.reloadSegments()
     }
     
-    func prepareCartViews(animated: Bool){
+    func prepareCartView(animated: Bool){
         numberOfCartItemsLabel.isHidden = (VTCartManager.sharedInstance.cartItems?.count ?? 0 ) == 0
         numberOfCartItemsLabel.text = "\(VTCartManager.sharedInstance.calclateTotalNumberOfCartItems())"
         cartButton.isHidden = (VTCartManager.sharedInstance.cartItems?.count ?? 0 ) == 0
@@ -189,6 +189,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
          if segue.identifier == "show-store-segue", let storeViewController = segue.destination as? StoreViewController
          {
             storeViewController.store = selectedStore
+            storeViewController.storeDelegate = self
          }
      }
 
@@ -223,12 +224,12 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     func cartItemsUpdated()
     {
-        prepareCartViews(animated: true)
+        prepareCartView(animated: true)
     }
     
     func continueClosingCartViewWithDecision(confirmed: Bool)
     {
-        prepareCartViews(animated: false)
+        prepareCartView(animated: false)
         
         UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseOut], animations: { [unowned self] in
             self.cartDetailsViewController.view.alpha = 0.0
@@ -246,6 +247,21 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
                 }
             }
         }
+    }
+    
+    
+    
+    func confirmOrderFromStore() {
+        
+        self.dismiss(animated: true){ [unowned self] in
+            
+            let cartManager = VTCartManager.sharedInstance
+            self.cartDelegate?.cartCheckoutConfirmed(storeName: cartManager.selectedStore?.name ?? "", orderDescription: cartManager.generateOrderDetails(), calculatedPricing: cartManager.calclateTotalOrderCost())
+            
+            cartManager.resetCartManager()
+        }
+        
+        
     }
 
     

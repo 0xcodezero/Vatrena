@@ -157,13 +157,13 @@
 			isa = PBXGroup;
 			children = (
 				7BE694361F2C9E750074149B /* NLSegmentControl */,
-				7BE694341F2C85E50074149B /* StoreTableViewCell.swift */,
-				7BE694421F2D8F0C0074149B /* ProductTableViewCell.swift */,
 				7BE694101F2C543B0074149B /* LaunchScreen.storyboard */,
 				7BE694121F2C543B0074149B /* Main.storyboard */,
+				7B7A5FFE1F383D8B001AD33B /* Extensions.swift */,
+				7BE694341F2C85E50074149B /* StoreTableViewCell.swift */,
+				7BE694421F2D8F0C0074149B /* ProductTableViewCell.swift */,
 				7BE694491F35D2E70074149B /* OptionGroupCollectionHeaderReusableView.swift */,
 				7BE6944B1F35D3010074149B /* OptionCollectionViewCell.swift */,
-				7B7A5FFE1F383D8B001AD33B /* Extensions.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
