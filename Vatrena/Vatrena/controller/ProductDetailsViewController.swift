@@ -126,7 +126,7 @@ class ProductDetailsViewController: UIViewController, UICollectionViewDataSource
         let combinedItemWidth:CGFloat = (CGFloat(numberOfItems) * flowLayout.itemSize.width) + ((CGFloat(numberOfItems) - 1) * flowLayout.minimumInteritemSpacing)
         let padding = (collectionView.frame.size.width - combinedItemWidth) / 2
         
-        return UIEdgeInsetsMake(0, padding, 10, padding)
+        return UIEdgeInsetsMake(0, max(padding, 20), 10, max(padding, 20))
         
     }
     
