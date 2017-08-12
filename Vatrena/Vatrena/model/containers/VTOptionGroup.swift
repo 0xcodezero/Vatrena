@@ -38,4 +38,30 @@ class VTOptionGroup: NSObject {
         self.selectionType = selectionType ?? .single
         self.options = []
     }
+    
+    
+    
+    
+    static func parseNode(_ dictionary: [String: Any]) -> VTOptionGroup
+    {
+        let id = (dictionary["id"] as? Int) ?? 0
+        let name = dictionary["name"] as? String
+        
+        var finalSelectionType = SelectionType.single
+        if let selectionType = dictionary["type"] as? String {
+            finalSelectionType = (selectionType == "multiple") ? .multiple : .single
+        }
+        
+        let optionGroup = VTOptionGroup(id: id, name: name, selectionType:finalSelectionType)
+        
+        if let optionsDicList = dictionary["options"] as? [[String: Any]]{
+            let options = optionsDicList.map({ (optionDic) -> VTOption in
+                return VTOption.parseNode(optionDic)
+            })
+            
+            optionGroup.options = options
+        }
+        
+        return optionGroup
+    }
 }

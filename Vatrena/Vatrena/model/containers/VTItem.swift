@@ -50,4 +50,26 @@ class VTItem: NSObject {
         self.count = 0
         self.optionGroups = []
     }
+    
+    
+    static func parseNode(_ dictionary: [String: Any]) -> VTItem
+    {
+        let id = (dictionary["id"] as? Int) ?? 0
+        let name = dictionary["name"] as? String
+        let imageURL = dictionary["imageURL"] as? String
+        let offering = dictionary["offering"] as? String
+        let price = dictionary["price"] as? Double
+        
+        let item = VTItem(id: id, name: name, imageURL: imageURL, offering: offering, price: price)
+        
+        if let optionGroupsDicList = dictionary["optionGroups"] as? [[String: Any]]{
+            let optionGroups = optionGroupsDicList.map({ (optionGroupDic) -> VTOptionGroup in
+                return VTOptionGroup.parseNode(optionGroupDic)
+            })
+            
+            item.optionGroups = optionGroups
+        }
+        
+        return item
+    }
 }

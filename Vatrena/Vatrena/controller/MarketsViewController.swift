@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 protocol CartCheckoutDelegate{
     func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double)
@@ -30,9 +31,19 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMarektsSegmentView()
+        
         titleLabel.text = Constants.STORES_VIEW_TITLE
-        storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
+        storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0)
+        self.segmentContainerView.alpha = 0.0
+        
+        HUD.show(.labeledProgress(title: nil, subtitle:"جاري تحميل البيانات.." ))
+        
+        
+        VTCartManager.sharedInstance.startLoadingVatrenaData {[unowned self] (markets) in
+            self.setupMarektsSegmentView()
+            self.storesTableView.reloadData()
+            PKHUD.sharedHUD.hide(afterDelay: 0.3)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +63,12 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     }
     //MARK: - Views Customization
     func setupMarektsSegmentView () {
+        
+        if ((VTCartManager.sharedInstance.markets?.count) ?? 0 < Constants.MINIMUM_NUNMBER_OF_SECTIONS_TO_SHOW_SEGMENT ) { // Two Items are sufficient for showing the segment view
+            storesTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            return
+        }
+        
         let segment = NLSegmentControl(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         segment.segments = VTCartManager.sharedInstance.markets?.map({ return $0.name ?? ""}) ?? []
         segment.segmentWidthStyle = .dynamic
@@ -71,6 +88,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
                 self.storesTableView.scrollToRow(at: IndexPath(row: 0, section: index) , at: .top, animated: true)
             }
         }
+        self.segmentContainerView.alpha = 1.0
         self.segmentContainerView.addSubview(segment)
         segment.reloadSegments()
     }
@@ -92,7 +110,9 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         cell.selectionStyle = .none
         cell.storeNameLabel.text = store?.name
         cell.storeDescriptionLabel.text = store?.offering
-        cell.storeImageView.image = UIImage(named: store?.imageURL ?? "store-placeholder")
+        cell.storeImageView.image = UIImage(named: "store-placeholder")
+        
+        cell.storeImageView.loadingImageUsingCache(withURLString: store?.imageURL ?? "")
         
         return cell
     }

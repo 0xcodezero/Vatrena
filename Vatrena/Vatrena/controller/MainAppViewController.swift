@@ -43,7 +43,8 @@ class MainAppViewController: UIViewController, CartCheckoutDelegate {
             marketsViewController.cartDelegate = self
         }
     }
-
+    
+    // MARK: - Delegate CartCheckoutDelegate
     func cartCheckoutConfirmed (storeName: String, orderDescription:String, calculatedPricing: Double){
         Analytics.logEvent("ConfirmedMarketOrder", parameters: nil)
         print("\n\n Confirmed Order from \(storeName) \n Details: \n \(orderDescription) \n with Items cost of: \(calculatedPricing) SAR")

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B7A5FFF1F383D8B001AD33B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7A5FFE1F383D8B001AD33B /* Extensions.swift */; };
 		7BE694141F2C543B0074149B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE694091F2C543B0074149B /* AppDelegate.swift */; };
 		7BE694151F2C543B0074149B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE6940D1F2C543B0074149B /* Assets.xcassets */; };
 		7BE694171F2C543B0074149B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE694101F2C543B0074149B /* LaunchScreen.storyboard */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		5CD4874C16E7D550D8EDA7F3 /* Pods-Vatrena.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vatrena.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vatrena/Pods-Vatrena.debug.xcconfig"; sourceTree = "<group>"; };
+		7B7A5FFE1F383D8B001AD33B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7BE693E01F2C4AE90074149B /* Vatrena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vatrena.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE694091F2C543B0074149B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BE6940D1F2C543B0074149B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				7BE694121F2C543B0074149B /* Main.storyboard */,
 				7BE694491F35D2E70074149B /* OptionGroupCollectionHeaderReusableView.swift */,
 				7BE6944B1F35D3010074149B /* OptionCollectionViewCell.swift */,
+				7B7A5FFE1F383D8B001AD33B /* Extensions.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				7BE694211F2C5BDC0074149B /* VTOptionGroup.swift in Sources */,
 				7BE6943E1F2C9E750074149B /* NLSegmentControlData.swift in Sources */,
 				7BE6941F1F2C5BC70074149B /* VTOption.swift in Sources */,
+				7B7A5FFF1F383D8B001AD33B /* Extensions.swift in Sources */,
 				7BE6942B1F2C5E770074149B /* VTCartManager.swift in Sources */,
 				7BE6944A1F35D2E70074149B /* OptionGroupCollectionHeaderReusableView.swift in Sources */,
 				7BE6944E1F35E8C10074149B /* Constants.swift in Sources */,
@@ -391,6 +395,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -441,6 +446,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -469,6 +475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CU86DE5393;
 				INFOPLIST_FILE = Vatrena/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.softcare.Vatrena;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,6 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CU86DE5393;
 				INFOPLIST_FILE = Vatrena/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.softcare.Vatrena;
 				PRODUCT_NAME = "$(TARGET_NAME)";

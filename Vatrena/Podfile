@@ -9,5 +9,6 @@ target 'Vatrena' do
 
 pod 'Firebase/Core'
 pod 'PKHUD', '~> 4.0'
+pod 'Firebase/Database'
 
 end

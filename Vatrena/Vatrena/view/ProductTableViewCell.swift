@@ -53,10 +53,11 @@ class ProductTableViewCell: UITableViewCell {
     
     func prepareViews(animated: Bool){
         productNameLabel.text = item.name
-        defaultpriceLabel.text = "\(item.price) SAR"
+        defaultpriceLabel.text = "\(item.price) ريال"
         descriptionLabel.text = item.offering
-        productImageView.image = UIImage(named: item.imageURL ?? "product-placeholder")
+        productImageView.image = UIImage(named: "product-placeholder")
         
+        productImageView.loadingImageUsingCache(withURLString: item.imageURL ?? "")
         
         UIView.transition(with: countLabel,
                           duration: animated ? 0.1 : 0.0,

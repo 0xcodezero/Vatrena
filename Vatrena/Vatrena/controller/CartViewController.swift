@@ -43,9 +43,16 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Views Customization
+    func adjustViewsValues(){
+        storeLabel.text = VTCartManager.sharedInstance.selectedStore?.name
+        totalOrderValueLabel.text = "\(VTCartManager.sharedInstance.calclateTotalOrderCost()) ريال"
+    }
 
  
     //MARK: - TableView DataSource & Delegate
+    final let REUSE_IDENTIFIER = "product-cell"
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -54,8 +61,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         return VTCartManager.sharedInstance.cartItems?.count ?? 0
     }
     
-    
-    final let REUSE_IDENTIFIER = "product-cell"
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = cartItemsTableView.dequeueReusableCell(withIdentifier:REUSE_IDENTIFIER ) as! ProductTableViewCell
@@ -71,8 +79,13 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    //MARK: - IBAction Handlers
     @IBAction func closeCartAction(_ sender: UIButton) {
         cartDelegate?.continueClosingCartViewWithDecision(confirmed: false)
+    }
+    
+    @IBAction func confirmStartingOrderAction(_ sender: UIButton) {
+        cartDelegate?.confirmRequestedCartItems()
     }
     
     @IBAction func updateCartItemsAction(_ sender: UIButton) {
@@ -88,20 +101,4 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             cartDelegate?.continueClosingCartViewWithDecision(confirmed: false)
         }
     }
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    
-    func adjustViewsValues(){
-        storeLabel.text = VTCartManager.sharedInstance.selectedStore?.name
-        totalOrderValueLabel.text = "\(VTCartManager.sharedInstance.calclateTotalOrderCost()) ريال"
-    }
-    
-    @IBAction func confirmStartingOrderAction(_ sender: UIButton) {
-        cartDelegate?.confirmRequestedCartItems()
-    }
-
 }

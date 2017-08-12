@@ -83,10 +83,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="albeek" translatesAutoresizingMaskIntoConstraints="NO" id="8EQ-da-Hbi">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="store-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8EQ-da-Hbi">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RcD-oh-qm3">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
@@ -250,6 +250,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Enq-yu-ZY3">
                                                             <rect key="frame" x="267" y="10" width="80" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="40"/>
@@ -596,6 +597,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUb-Eu-i7I">
                                                             <rect key="frame" x="252" y="5" width="80" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="40"/>
@@ -738,7 +740,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78d-Bn-Ok5">
                                         <rect key="frame" x="267" y="10" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="40"/>
@@ -892,12 +894,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="albeek" width="600" height="307"/>
         <image name="back" width="40" height="40"/>
         <image name="cart" width="40" height="40"/>
         <image name="close" width="40" height="40"/>
         <image name="down_arrow" width="20" height="20"/>
         <image name="main-app-bg" width="320" height="552"/>
+        <image name="store-placeholder" width="600" height="300"/>
         <image name="up_arrow" width="20" height="20"/>
     </resources>
 </document>

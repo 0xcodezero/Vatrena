@@ -22,4 +22,19 @@ class VTOption: NSObject {
         self.selected = selected ?? false
         self.deltaPrice = deltaPrice ?? 0.0
     }
+    
+    
+    
+    static func parseNode(_ dictionary: [String: Any]) -> VTOption
+    {
+        let id = (dictionary["id"] as? Int) ?? 0
+        let name = dictionary["name"] as? String
+        let selected = (dictionary["selected"] as? Bool) ?? false
+        let deltaPrice = (dictionary["delta"] as? Double) ?? 0.0
+        
+        let option = VTOption(id: id, name: name, selected: selected, deltaPrice: deltaPrice)
+        
+        return option
+    }
+    
 }

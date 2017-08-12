@@ -12,6 +12,7 @@ import UIKit
 struct Constants {
     
     static let GROUP_OFFSET = 1000
+    static let MINIMUM_NUNMBER_OF_SECTIONS_TO_SHOW_SEGMENT = 2
     
     //MARK: - STORE ViewController Constants
     static let storeHeaderHeight = CGFloat(40.0)
