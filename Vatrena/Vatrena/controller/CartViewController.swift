@@ -82,12 +82,12 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //MARK: - IBAction Handlers
     @IBAction func closeCartAction(_ sender: UIButton) {
-        Analytics.logEvent("Close-Cart-Without-Action", parameters: nil)
+        Analytics.logEvent("Close_Cart_Without_Action", parameters: nil)
         cartDelegate?.continueClosingCartViewWithDecision(confirmed: false)
     }
     
     @IBAction func confirmStartingOrderAction(_ sender: UIButton) {
-        Analytics.logEvent("Delivery-Within-Cart", parameters: nil)
+        Analytics.logEvent("Delivery_Within_Cart", parameters: nil)
         cartDelegate?.confirmRequestedCartItems()
     }
     

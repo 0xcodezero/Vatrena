@@ -33,7 +33,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Analytics.logEvent("Explore-Market-opened", parameters: nil)
+        Analytics.logEvent("Explore_Market_opened", parameters: nil)
         
         titleLabel.text = Constants.STORES_VIEW_TITLE
         storesTableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0)
@@ -256,7 +256,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         
         self.dismiss(animated: true){ [unowned self] in
             
-            Analytics.logEvent("Confirmed-Market-Order", parameters: nil)
+            Analytics.logEvent("Confirmed_Market_Order", parameters: nil)
             let cartManager = VTCartManager.sharedInstance
             self.cartDelegate?.cartCheckoutConfirmed(storeName: cartManager.selectedStore?.name ?? "", orderDescription: cartManager.generateOrderDetails(), calculatedPricing: cartManager.calclateTotalOrderCost())
             

@@ -196,12 +196,12 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     
     @IBAction func deliveryStartingAction(_ sender: UIButton) {
-        Analytics.logEvent("Direct-Delivery-Without-Cart", parameters: nil)
+        Analytics.logEvent("Direct_Delivery_Without_Cart", parameters: nil)
         continueClosingCartViewWithDecision(confirmed: true)
     }
     
     @IBAction func showCartViewAction(_ sender: UIButton) {
-        Analytics.logEvent("Show-Cart_Items", parameters: nil)
+        Analytics.logEvent("Show_Cart_Items", parameters: nil)
         showCartDetailsView()
     }
     // MARK: - Product Details view Navigation
