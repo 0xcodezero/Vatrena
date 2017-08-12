@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import Firebase
 
 
 protocol StoreDelegate {
@@ -111,9 +112,6 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
                 self.deliverButton.alpha = 1.0
             }
         })
-        
-        
-        
     }
     
     
@@ -198,9 +196,14 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     
     
     @IBAction func deliveryStartingAction(_ sender: UIButton) {
+        Analytics.logEvent("Direct-Delivery-Without-Cart", parameters: nil)
         continueClosingCartViewWithDecision(confirmed: true)
     }
     
+    @IBAction func showCartViewAction(_ sender: UIButton) {
+        Analytics.logEvent("Show-Cart_Items", parameters: nil)
+        showCartDetailsView()
+    }
     // MARK: - Product Details view Navigation
     
     func showDetailsForProductItem(atIndexPath indexPath: IndexPath){
@@ -247,11 +250,7 @@ class StoreViewController: UIViewController  , UITableViewDelegate, UITableViewD
     }
     
     //MARK: - CartView Navigation
-    @IBAction func showCartViewAction(_ sender: UIButton) {
-        showCartDetailsView()
-    }
-    
-    
+   
     func showCartDetailsView(){
         
         cartDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController
