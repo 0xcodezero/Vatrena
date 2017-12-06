@@ -43,6 +43,7 @@ class MarketsViewController: UIViewController , UITableViewDelegate, UITableView
         VTCartManager.sharedInstance.startLoadingVatrenaData {[unowned self] (markets) in
             self.setupMarektsSegmentView()
             self.storesTableView.reloadData()
+            self.storesTableView.bounces = true
             PKHUD.sharedHUD.hide(afterDelay: 0.3)
         }
     }
